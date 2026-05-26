@@ -1,6 +1,6 @@
 export const site = {
   name: "ScreenTools",
-  url: "https://screentools.app",
+  url: "https://you-are-building-a-production-ready-ruby.vercel.app",
   description: "Fast full-screen color tools for lighting, focus, screen cleaning and monitor testing."
 };
 
