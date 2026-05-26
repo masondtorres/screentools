@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { AdPlaceholder } from "@/components/AdPlaceholder";
+import { BelowToolAdSlot, InContentAdSlot } from "@/components/AdSlot";
+import { ChecklistCTA } from "@/components/ChecklistCTA";
 import { FAQBlock } from "@/components/FAQBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/RelatedTools";
@@ -39,15 +40,16 @@ export function ToolPageTemplate({ path, title, intro, children, sections, faqs,
         <p className="mt-3 max-w-3xl text-gray-700">{intro}</p>
       </section>
       {children}
-      <AdPlaceholder />
-      <section className="my-8 rounded border border-line bg-white p-4" aria-labelledby="quick-answer">
+      <BelowToolAdSlot />
+      {["/monitor-test", "/dead-pixel-test", "/backlight-bleed-test"].includes(path) ? <ChecklistCTA /> : null}
+      <section className="my-8 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-sm" aria-labelledby="quick-answer">
         <h2 id="quick-answer" className="text-xl font-bold">Quick answer</h2>
         <p className="mt-2 text-gray-700">{answer}</p>
       </section>
       {rows.length ? (
         <section className="my-8" aria-labelledby="summary-table">
           <h2 id="summary-table" className="text-2xl font-bold">Summary</h2>
-          <div className="mt-3 overflow-x-auto rounded border border-line bg-white">
+          <div className="mt-3 overflow-x-auto rounded-2xl border border-white/70 bg-white shadow-sm">
             <table className="w-full border-collapse text-left text-sm">
               <tbody>
                 {rows.map((row) => (
@@ -64,7 +66,7 @@ export function ToolPageTemplate({ path, title, intro, children, sections, faqs,
       <SEOContentSection sections={sections} />
       {extra}
       {clusterLink ? (
-        <section className="my-8 rounded border border-line bg-white p-4">
+        <section className="my-8 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-sm">
           <h2 className="text-2xl font-bold">Tool category</h2>
           <p className="mt-2 text-gray-700">Browse more tools in <a href={clusterLink.href} className="font-semibold underline">{clusterLink.title}</a>.</p>
         </section>
@@ -74,14 +76,14 @@ export function ToolPageTemplate({ path, title, intro, children, sections, faqs,
         <h2 id="related-guides" className="text-2xl font-bold">Related guides</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {guideLinks.map((guide) => (
-            <a key={guide.href} href={guide.href} className="rounded border border-line bg-white p-4 hover:border-gray-500">
+            <a key={guide.href} href={guide.href} className="rounded-2xl border border-white/70 bg-white/90 p-4 shadow-sm hover:border-blue-200 hover:shadow-soft">
               <span className="font-semibold">{guide.title}</span>
               <span className="mt-1 block text-sm text-gray-600">{guide.description}</span>
             </a>
           ))}
         </div>
       </section>
-      <AdPlaceholder />
+      <InContentAdSlot />
       <FAQBlock items={faqs} />
     </main>
   );

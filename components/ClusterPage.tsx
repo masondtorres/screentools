@@ -16,8 +16,8 @@ export function ClusterPage({ page }: { page: ClusterPageType }) {
         <h2 id={`${page.slug}-cards`} className="text-2xl font-bold">Tools in this group</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {page.cards.map((card) => (
-            <Link key={card.href} href={card.href} className="rounded border border-line bg-white p-4 hover:border-gray-500">
-              <h3 className="font-bold">{card.title}</h3>
+            <Link key={card.href} href={card.href} className="rounded-2xl border border-white/70 bg-white/90 p-5 shadow-sm hover:border-blue-200 hover:shadow-soft">
+              <h3 className="font-extrabold tracking-tight">{card.title}</h3>
               <p className="mt-2 text-sm text-gray-600">{card.description}</p>
             </Link>
           ))}
@@ -25,7 +25,7 @@ export function ClusterPage({ page }: { page: ClusterPageType }) {
       </section>
       <section className="my-8" aria-labelledby={`${page.slug}-chooser`}>
         <h2 id={`${page.slug}-chooser`} className="text-2xl font-bold">Which tool should I use?</h2>
-        <div className="mt-3 overflow-x-auto rounded border border-line bg-white">
+        <div className="mt-3 overflow-x-auto rounded-2xl border border-white/70 bg-white shadow-sm">
           <table className="w-full border-collapse text-left text-sm">
             <thead className="bg-gray-50">
               <tr>
@@ -50,7 +50,7 @@ export function ClusterPage({ page }: { page: ClusterPageType }) {
         <h2 id={`${page.slug}-guides`} className="text-2xl font-bold">Related guides</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {page.relatedGuides.map((guide) => (
-            <Link key={guide.href} href={guide.href} className="rounded border border-line bg-white p-4 font-semibold hover:border-gray-500">
+            <Link key={guide.href} href={guide.href} className="rounded-2xl border border-white/70 bg-white/90 p-4 font-semibold shadow-sm hover:border-blue-200 hover:shadow-soft">
               {guide.title}
             </Link>
           ))}

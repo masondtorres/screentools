@@ -12,6 +12,12 @@ export type AnalyticsEvent =
   | "effect_setting_changed"
   | "ad_placeholder_viewed"
   | "affiliate_click"
+  | "ad_slot_visible"
+  | "affiliate_block_visible"
+  | "affiliate_link_clicked"
+  | "bulk_testing_cta_clicked"
+  | "contact_email_clicked"
+  | "checklist_cta_clicked"
   | "email_signup";
 
 export function trackEvent(event: AnalyticsEvent, data?: Record<string, string | number | boolean>) {

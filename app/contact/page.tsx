@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactEmailLink } from "@/components/ContactEmailLink";
 import { JsonLd } from "@/components/JsonLd";
 import { config } from "@/lib/config";
 import { breadcrumbSchema } from "@/lib/seo";
@@ -12,13 +13,13 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const email = config.contactEmail;
+  const email = config.CONTACT_EMAIL;
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-8 content-prose">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }])} />
       <h1>Contact</h1>
-      <p>For feedback, corrections or support questions, email us at <a href={`mailto:${email}`}>{email}</a>.</p>
+      <p>For feedback, corrections or support questions, email us at <ContactEmailLink email={email} />.</p>
       <p>ScreenTools does not use a contact form yet. Email opens in your mail app so your message is sent directly.</p>
     </main>
   );

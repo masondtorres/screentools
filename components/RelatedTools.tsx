@@ -8,7 +8,7 @@ export function RelatedTools({ current }: { current?: string }) {
       <h2 id="related-tools" className="text-2xl font-bold">Related tools</h2>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {links.map((tool) => (
-          <Link key={tool.href} href={tool.href} className="rounded border border-line bg-white p-4 hover:border-gray-500">
+          <Link key={tool.href} href={tool.href} className="rounded-2xl border border-white/70 bg-white/90 p-4 shadow-sm hover:border-blue-200 hover:shadow-soft">
             <span className="font-semibold">{tool.title}</span>
             <span className="mt-1 block text-sm text-gray-600">{tool.description}</span>
           </Link>

@@ -65,11 +65,11 @@ export default function HomePage() {
         </div>
       </section>
       <section className="my-10" aria-labelledby="fun-screens-home">
-        <h2 id="fun-screens-home" className="text-2xl font-bold">Fun screens</h2>
+        <h2 id="fun-screens-home" className="text-2xl font-bold">Fun screen effects</h2>
         <p className="mt-2 max-w-3xl text-gray-700">Harmless full-screen visual effects for jokes, videos and backgrounds.</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {funScreens.filter((screen) => ["broken-screen-prank", "fake-windows-update", "fake-blue-screen", "dvd-screensaver", "glitch-screen", "code-rain-screen"].includes(screen.slug)).map((screen) => (
-            <Link key={screen.slug} href={`/${screen.slug}`} className="rounded border border-line bg-white p-4 hover:border-gray-500">
+            <Link key={screen.slug} href={`/${screen.slug}`} className="rounded-2xl border border-white/70 bg-white/90 p-4 shadow-sm hover:border-blue-200 hover:shadow-soft">
               <h3 className="font-bold">{screen.cardTitle}</h3>
               <p className="mt-2 text-sm text-gray-600">{screen.cardDescription}</p>
             </Link>

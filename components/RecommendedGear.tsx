@@ -6,7 +6,7 @@ import { config } from "@/lib/config";
 const gear = ["Monitor arm", "Portable monitor", "Screen cleaning kit", "Ring light", "Desk lamp"];
 
 export function RecommendedGear() {
-  if (!config.showAffiliatePlaceholders) return null;
+  if (!config.AFFILIATE_BLOCKS_ENABLED) return null;
 
   return (
     <section aria-labelledby="recommended-gear" className="my-8">
@@ -19,7 +19,7 @@ export function RecommendedGear() {
             href="#"
             onClick={(event) => {
               event.preventDefault();
-              trackEvent("affiliate_click", { item });
+              trackEvent("affiliate_link_clicked", { item });
             }}
             className="rounded border border-line bg-white p-4 text-sm font-semibold hover:border-gray-500"
           >

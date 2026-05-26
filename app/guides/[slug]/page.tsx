@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChecklistCTA } from "@/components/ChecklistCTA";
 import { FAQBlock } from "@/components/FAQBlock";
+import { InContentAdSlot } from "@/components/AdSlot";
 import { JsonLd } from "@/components/JsonLd";
+import { RecommendedGearBlock } from "@/components/RecommendedGearBlock";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { guideArticles } from "@/lib/guides";
 import { canonical } from "@/lib/site";
@@ -28,6 +31,7 @@ export default async function GuideDetailPage({ params }: Props) {
   const { slug } = await params;
   const guide = getGuide(slug);
   if (!guide) return null;
+  const showGear = ["how-to-clean-your-screen-safely", "how-to-use-a-white-screen-for-video-calls", "how-to-use-your-screen-as-a-light", "how-to-test-a-used-monitor-before-buying", "best-screen-colors-for-focus"].includes(slug);
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
       <JsonLd data={[articleSchema(guide.title, guide.description, `/guides/${slug}`), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Guides", path: "/guides" }, { name: guide.title, path: `/guides/${slug}` }]), faqSchema(guide.faqs)]} />
@@ -40,6 +44,9 @@ export default async function GuideDetailPage({ params }: Props) {
             {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </section>
         ))}
+        <InContentAdSlot />
+        {slug === "how-to-test-a-used-monitor-before-buying" ? <ChecklistCTA /> : null}
+        {showGear ? <RecommendedGearBlock context={slug} /> : null}
         <section>
           <h2>Use-case table</h2>
           <div className="overflow-x-auto rounded border border-line">
@@ -93,7 +100,7 @@ export default async function GuideDetailPage({ params }: Props) {
         </section>
       </div>
       <FAQBlock items={guide.faqs} />
-      <Link href="/guides" className="mt-8 inline-block rounded bg-ink px-4 py-2 text-sm font-bold text-white">Back to guides</Link>
+      <Link href="/guides" className="mt-8 inline-block rounded-xl bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-slate-700">Back to guides</Link>
     </main>
   );
 }
