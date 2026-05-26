@@ -1,10 +1,13 @@
 "use client";
 
 import { trackEvent } from "@/lib/analytics";
+import { config } from "@/lib/config";
 
 const gear = ["Monitor arm", "Portable monitor", "Screen cleaning kit", "Ring light", "Desk lamp"];
 
 export function RecommendedGear() {
+  if (!config.showAffiliatePlaceholders) return null;
+
   return (
     <section aria-labelledby="recommended-gear" className="my-8">
       <h2 id="recommended-gear" className="text-2xl font-bold">Recommended gear</h2>
@@ -16,7 +19,7 @@ export function RecommendedGear() {
             href="#"
             onClick={(event) => {
               event.preventDefault();
-              trackEvent("affiliate_clicked", { item });
+              trackEvent("affiliate_click", { item });
             }}
             className="rounded border border-line bg-white p-4 text-sm font-semibold hover:border-gray-500"
           >

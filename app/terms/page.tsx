@@ -17,6 +17,8 @@ export default function TermsPage() {
       <h1>Terms of Use</h1>
       <p>ScreenTools is provided as a simple browser utility. Use the tools at your own discretion.</p>
       <p>The tools can help with visual checks, but they do not replace professional hardware testing, repair or calibration.</p>
+      <p>Screen tests can help identify possible issues. They do not repair devices, confirm warranty coverage or replace professional diagnostics.</p>
+      <p>Fun screens are visual effects only. Nothing is actually broken, crashing or updating. Use them responsibly and do not use them to mislead people about security, payments, accounts or device damage.</p>
       <p>Do not stare directly at a bright screen for long periods. Take care when using bright fullscreen modes in dark rooms.</p>
     </main>
   );

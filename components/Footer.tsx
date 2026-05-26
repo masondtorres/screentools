@@ -9,11 +9,12 @@ export function Footer() {
           <p className="mt-2">Simple browser tools for screen colors, light and display checks.</p>
         </div>
         <div className="grid gap-2">
-          <Link href="/white-screen">White Screen</Link>
-          <Link href="/black-screen">Black Screen</Link>
-          <Link href="/color-screen">Color Screen</Link>
-          <Link href="/monitor-test">Monitor Test</Link>
-          <Link href="/bulk-screen-testing">Bulk Testing</Link>
+          <Link href="/color-screens">Color Screens</Link>
+          <Link href="/screen-tests">Screen Tests</Link>
+          <Link href="/screen-lighting">Screen Lighting</Link>
+          <Link href="/focus-screens">Focus Screens</Link>
+          <Link href="/fun-screens">Fun Screens</Link>
+          <Link href="/guides">Guides</Link>
         </div>
         <div className="grid gap-2">
           <Link href="/about">About</Link>

@@ -15,8 +15,9 @@ export default function AboutPage() {
     <main className="mx-auto max-w-3xl px-4 py-8 content-prose">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "About", path: "/about" }])} />
       <h1>About ScreenTools</h1>
-      <p>ScreenTools is a small utility website for full-screen colors, monitor checks and screen lighting. The goal is to keep each tool fast, simple and usable without an account.</p>
-      <p>The site is built for people who need a quick white screen, black screen, color screen, dead pixel test or video call light.</p>
+      <p>ScreenTools is a free collection of browser-based screen tools for screen colors, display testing, lighting, focus and harmless visual effects.</p>
+      <p>The site is built for people who need a quick white screen, black screen, custom color screen, dead pixel test, monitor test, screen flashlight or video call light.</p>
+      <p>The tools do not require accounts, payments, downloads or browser extensions. Fun screens are clearly labeled as visual effects only.</p>
     </main>
   );
 }

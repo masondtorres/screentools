@@ -46,6 +46,10 @@ Use `components/AdPlaceholder.tsx` as the replacement point for ad units. Do not
 
 Replace the placeholder links in `components/RecommendedGear.tsx` with real affiliate URLs. Keep labels clear and avoid fake prices, reviews or ratings.
 
+## Configure contact email
+
+The public contact email is set in `lib/config.ts` as `contactEmail`. Current value: `masondtorres@duck.com`. Contact CTAs use `mailto:` links only. Do not add a static contact form unless it sends through a real backend or form service.
+
 ## Add new tool pages
 
 Create a new folder under `app/`, add a `page.tsx`, set unique metadata, and use `ToolPageTemplate` with crawlable text, FAQ data and related tools. Add the tool to `toolLinks` in `lib/site.ts`.

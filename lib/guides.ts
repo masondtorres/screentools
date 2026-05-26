@@ -333,5 +333,143 @@ export const guideArticles: GuideArticle[] = [
       { title: "White Screen", href: "/white-screen" },
       { title: "Screen Flashlight", href: "/screen-flashlight" }
     ]
+  },
+  {
+    title: "White Screen vs Black Screen",
+    slug: "white-screen-vs-black-screen",
+    description: "Compare white and black screens for lighting, focus, cleaning and monitor checks.",
+    intro: "Use a white screen when you need light, dust checks or a bright blank background. Use a black screen when you want less light, a calmer view or a backlight bleed check.",
+    sections: [
+      { title: "Quick answer", paragraphs: ["A white screen is best for light, cleaning checks and finding dark marks. A black screen is best for low-light focus, edge glow checks and finding bright stuck pixels.", "Neither screen fixes hardware. They help you create a simple viewing condition so you can see what is already on the display."] },
+      { title: "Step-by-step choice", paragraphs: ["Start by asking what you need. If you need to light your face, find dust or make a bright background, choose white. If you need to reduce light, rest your eyes or inspect glow near the panel edges, choose black.", "Open the page, adjust brightness and enter fullscreen. Keep the room lighting close to how you normally use the screen unless you are testing a specific issue. Press Esc to exit fullscreen where supported."] },
+      { title: "Best uses for white", paragraphs: ["White is useful as a quick lamp, video call light, screen cleaning check and dark pixel check. It also works as a clean background for simple photos or visual reset.", "Warm white is often better for faces. Bright white is better for dust. Cool white can feel clearer in daylight."] },
+      { title: "Best uses for black", paragraphs: ["Black is useful when you want less light from a monitor. It can make bright stuck pixels, glow, backlight bleed and edge light easier to see in a dim room.", "A black screen does not turn the display off. It still uses the screen, but it creates a darker browser view."] },
+      { title: "Common mistakes", paragraphs: ["Do not use white at full brightness in a dark room for a long time. Do not judge backlight bleed with reflections on the display. Do not assume one test color tells the whole story.", "For a real display check, compare white, black, gray and primary colors. For focus, choose the color that pulls the least attention in your room."] }
+    ],
+    faqs: [
+      { question: "Is a black screen better for focus?", answer: "Often yes in dim rooms. White can be better if you need light." },
+      { question: "Which screen is better for cleaning?", answer: "White shows dust well. Black shows fingerprints and oily smudges." },
+      { question: "Does black turn off my monitor?", answer: "No. It shows black in the browser while the display stays on." }
+    ],
+    related: [
+      { title: "White Screen", href: "/white-screen" },
+      { title: "Black Screen", href: "/black-screen" },
+      { title: "Gray Screen", href: "/gray-screen" }
+    ]
+  },
+  {
+    title: "How to Check Backlight Bleed",
+    slug: "how-to-check-backlight-bleed",
+    description: "Use a black screen in a dim room to inspect edge glow and possible backlight bleed.",
+    intro: "To check backlight bleed, open a black screen in fullscreen, dim the room, and inspect the edges and corners from your normal viewing position. Some glow can be normal depending on the panel and brightness.",
+    sections: [
+      { title: "Quick answer", paragraphs: ["Backlight bleed is easiest to see on a black screen. Lower reflections, use normal brightness first, and look for uneven bright patches near the edges.", "This check helps you document what you see. It does not repair the display or decide warranty coverage."] },
+      { title: "Step-by-step test", paragraphs: ["Clean the screen and reduce reflections. Open the Backlight Bleed Test page and press Go Full Screen. Sit where you normally sit, not at an extreme side angle.", "Let your eyes adjust for a few seconds. Look around each corner and edge. If the whole screen looks gray, lower brightness and test again."] },
+      { title: "What to look for", paragraphs: ["Look for bright patches that stay in the same place. Edge glow, cloudy corners and uneven black levels can all be easier to see on a dark screen.", "A phone camera may exaggerate glow. Use photos for notes, but trust what you can see in normal use."] },
+      { title: "Common mistakes", paragraphs: ["Do not test in a room with bright reflections. Do not test only at maximum brightness unless you use the screen that way. Do not compare two monitors with different brightness or local dimming settings.", "Do not press on the screen to change the glow. Pressure can damage a panel."] },
+      { title: "Photo note", paragraphs: ["If the display is new and the issue is clear, take one wide photo and one closer photo at normal brightness. Contact the seller or manufacturer if you need help with their policy. This is not legal advice."] }
+    ],
+    faqs: [
+      { question: "Is backlight bleed always a defect?", answer: "Not always. Some glow can be normal. Severity depends on the panel, brightness and viewing angle." },
+      { question: "What color should I use?", answer: "Use black in a dim room." },
+      { question: "Can ScreenTools fix it?", answer: "No. It only helps you inspect the screen." }
+    ],
+    related: [
+      { title: "Backlight Bleed Test", href: "/backlight-bleed-test" },
+      { title: "Black Screen", href: "/black-screen" },
+      { title: "Monitor Test", href: "/monitor-test" }
+    ]
+  },
+  {
+    title: "Dead Pixel vs Stuck Pixel",
+    slug: "dead-pixel-vs-stuck-pixel",
+    description: "Learn the difference between dead pixels and stuck pixels and which colors reveal each issue.",
+    intro: "A dead pixel usually stays dark. A stuck pixel stays on one color or stays bright while the rest of the screen changes.",
+    sections: [
+      { title: "Quick answer", paragraphs: ["Dead pixels and stuck pixels look similar because both are tiny dots that do not match the screen. The difference is behavior: dead pixels are often dark, while stuck pixels may stay red, green, blue or bright.", "Use several full-screen colors to compare the dot. One color is not enough."] },
+      { title: "Step-by-step check", paragraphs: ["Clean the screen first. Open the Dead Pixel Test page and enter fullscreen. Check white, black, red, green, blue, yellow, cyan, magenta and gray.", "Watch the same spot as colors change. If it stays black on every color, it may be dead. If it changes on some colors but not others, it may be stuck or a subpixel issue."] },
+      { title: "What each issue means", paragraphs: ["A dead pixel may not light up. It can show as a black dot on white or bright colors. A stuck pixel may be locked to one color channel and show as red, green, blue or white.", "Dust can mimic either issue. If the mark moves when wiped, it is surface dirt, not a pixel problem."] },
+      { title: "Common mistakes", paragraphs: ["Do not judge from a screenshot because screenshots do not capture hardware defects. Do not inspect only the center of the screen. Corners and edges matter too.", "Do not rely on a single color. A subpixel issue may hide until you use the right color."] },
+      { title: "What to do next", paragraphs: ["If the device is new, take photos in more than one color and check the seller policy. If it is an older device, decide whether the dot affects normal use before spending time on repair options.", "ScreenTools does not repair pixels. It helps you find and describe what you see."] }
+    ],
+    faqs: [
+      { question: "Which is worse, dead or stuck?", answer: "It depends on the display and location. A dead pixel is often dark, while a stuck pixel may be more visible on some colors." },
+      { question: "Can I see this in a screenshot?", answer: "No. A screenshot captures the image, not the physical panel." },
+      { question: "Which tool should I use?", answer: "Use the Dead Pixel Test or Stuck Pixel Test." }
+    ],
+    related: [
+      { title: "Dead Pixel Test", href: "/dead-pixel-test" },
+      { title: "Stuck Pixel Test", href: "/stuck-pixel-test" },
+      { title: "Monitor Test", href: "/monitor-test" }
+    ]
+  },
+  {
+    title: "Best Screen Colors for Focus",
+    slug: "best-screen-colors-for-focus",
+    description: "Pick simple screen colors for focus, breaks and low-distraction second monitors.",
+    intro: "The best screen color for focus depends on your room. Black is calm in dim rooms, soft gray is neutral, and warm white works when you need light.",
+    sections: [
+      { title: "Quick answer", paragraphs: ["Use black if light distracts you. Use gray if you want a neutral background. Use warm white if you need a little light while staying focused.", "A focus screen should reduce visual noise. It should not become another thing to adjust every minute."] },
+      { title: "Step-by-step setup", paragraphs: ["Pick the screen you use least, or open a focus color on a second monitor. Choose black, blank, gray or warm white. Set brightness lower than normal if the display is near your eyes.", "If you need a timed session, use Focus Timer Screen. Keep the timer simple and avoid switching colors often."] },
+      { title: "Use-case table guide", paragraphs: ["For writing in a dim room, black or dark gray is usually best. For reading notes at a desk, warm white can help. For a visual reset between tasks, blank white or blank gray can work well.", "If your room is bright, a black screen may reflect more. In that case, gray can feel calmer."] },
+      { title: "Common mistakes", paragraphs: ["Do not use saturated red or blue as a long focus background unless it truly helps you. Strong colors often pull attention.", "Do not keep the screen at full brightness. Do not use motion effects as a focus screen. Movement tends to distract."] },
+      { title: "Best settings", paragraphs: ["Use a low or medium brightness. Choose a color that matches the room. Hide controls in fullscreen. Press Esc when you are done.", "For a second monitor, a blank screen can be better than turning it off if you still want light or a timer."] }
+    ],
+    faqs: [
+      { question: "Is black best for focus?", answer: "Often in dim rooms, yes. Gray can be better in bright rooms." },
+      { question: "Should I use bright colors?", answer: "Usually no. Strong colors can be distracting for long sessions." },
+      { question: "Can I use a timer?", answer: "Yes. Use Focus Timer Screen." }
+    ],
+    related: [
+      { title: "Focus Timer Screen", href: "/focus-timer-screen" },
+      { title: "Blank Screen", href: "/blank-screen" },
+      { title: "Black Screen", href: "/black-screen" }
+    ]
+  },
+  {
+    title: "How to Use a Screen Flashlight Safely",
+    slug: "how-to-use-a-screen-flashlight-safely",
+    description: "Use your phone, tablet or monitor as a simple light without straining your eyes.",
+    intro: "A screen flashlight is useful for short, low-risk tasks. Use comfortable brightness, point the screen away from your eyes, and do not rely on it where a real flashlight is needed for safety.",
+    sections: [
+      { title: "Quick answer", paragraphs: ["Choose bright white for the most light, warm white for comfort, or soft light for camera use. Raise brightness slowly and use a timer if you only need the light for a short time.", "A screen is not a safety light. Use a real flashlight for dark stairs, repairs, driving, outdoor tasks or emergencies."] },
+      { title: "Step-by-step use", paragraphs: ["Open Screen Flashlight. Start with medium brightness. Point the screen at the object or area you want to light. Avoid staring into the display.", "If you use a phone, hold it steady or prop it up safely. If you use a laptop or monitor, make sure vents are not blocked and the device has normal airflow."] },
+      { title: "Best settings", paragraphs: ["Bright white gives maximum light. Warm light is better at night. Soft light is better near your face or camera. Cool white can work well in daylight.", "Use the timer when possible. It helps avoid leaving a bright screen on and draining battery."] },
+      { title: "Common mistakes", paragraphs: ["Do not start at maximum brightness in a dark room. Do not place the screen directly against fabric or soft surfaces that block heat. Do not use flashing or moving effects as a flashlight.", "Do not use a screen flashlight where dropping the device would create another problem."] },
+      { title: "When to use another light", paragraphs: ["Use a real flashlight for anything involving tools, water, stairs, roads or safety. A screen light is best for finding something nearby, adding desk light or making a quick room glow."] }
+    ],
+    faqs: [
+      { question: "Can a phone screen be a flashlight?", answer: "Yes, for short simple tasks. It is not as strong or reliable as a real flashlight." },
+      { question: "Can bright screen light hurt my eyes?", answer: "It can feel harsh. Lower brightness and avoid staring at it." },
+      { question: "Which ScreenTools page should I use?", answer: "Use Screen Flashlight or Soft Light Screen." }
+    ],
+    related: [
+      { title: "Screen Flashlight", href: "/screen-flashlight" },
+      { title: "Soft Light Screen", href: "/soft-light-screen" },
+      { title: "Warm Light Screen", href: "/warm-light-screen" }
+    ]
+  },
+  {
+    title: "How to Test a Used Monitor Before Buying",
+    slug: "how-to-test-a-used-monitor-before-buying",
+    description: "Check a used monitor with browser-based color, pixel, uniformity and backlight tests before you buy.",
+    intro: "Before buying a used monitor, check it with solid colors, gray uniformity, a black backlight test, grid alignment and text sharpness. These quick checks can reveal problems before money changes hands.",
+    sections: [
+      { title: "Quick answer", paragraphs: ["Bring a laptop if possible, open ScreenTools, and test the monitor in fullscreen. Check white, black, red, green, blue, gray, grid, gradient and text sharpness.", "This does not replace a full professional test, but it gives you a practical screen check in a few minutes."] },
+      { title: "Step-by-step checklist", paragraphs: ["First, inspect the outside of the monitor. Look for cracks, pressure marks, damaged ports and loose stands. Connect it and set a normal resolution and refresh rate.", "Second, run Dead Pixel Test. Move through white, black, red, green, blue and gray. Look for dark dots, bright dots or colored dots that do not change.", "Third, run Monitor Test. Use grid for alignment, gradient for banding, checkerboard for scaling, and text sharpness for readability. Then run Backlight Bleed Test in a dimmer area if possible."] },
+      { title: "What to ask the seller", paragraphs: ["Ask whether the monitor has been repaired, dropped or used with burn-in risk. Ask if all ports work. Ask if you can test it for a few minutes before paying.", "If the seller will not let you test a used monitor at all, be careful. A short browser test is reasonable for most local sales."] },
+      { title: "Common mistakes", paragraphs: ["Do not test only the desktop wallpaper. Wallpapers can hide defects. Do not judge sharpness before setting the correct resolution. Do not ignore the corners.", "Do not rely on photos from the listing. You need to see the actual panel running."] },
+      { title: "Limits of this check", paragraphs: ["ScreenTools can show visual patterns and colors. It cannot test every port, speaker, menu setting, warranty status or long-term reliability.", "Use the results as one part of your decision. If you see a problem, decide whether the price still makes sense."] }
+    ],
+    faqs: [
+      { question: "What is the fastest used monitor test?", answer: "Run Dead Pixel Test, Gray Screen, Backlight Bleed Test and Text Sharpness." },
+      { question: "Can I test with only a phone?", answer: "A phone can help with visual checks, but a laptop is better for testing the monitor itself." },
+      { question: "Should I buy a monitor with one bad pixel?", answer: "That is a personal choice based on price, location of the pixel and how much it bothers you." }
+    ],
+    related: [
+      { title: "Monitor Test", href: "/monitor-test" },
+      { title: "Dead Pixel Test", href: "/dead-pixel-test" },
+      { title: "Screen Uniformity Test", href: "/screen-uniformity-test" }
+    ]
   }
 ];

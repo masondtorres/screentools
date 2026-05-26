@@ -6,11 +6,14 @@ export type SeoLandingPage = {
   color?: string;
   presets?: Array<{ name: string; hex: string }>;
   intro: string;
+  quickAnswer?: string;
+  cluster?: { title: string; href: string };
+  summaryRows?: Array<{ label: string; value: string }>;
   sections: Array<{ title: string; body: string[] }>;
   faqs: Array<{ question: string; answer: string }>;
 };
 
-export const seoLandingPages: SeoLandingPage[] = [
+const rawSeoLandingPages: SeoLandingPage[] = [
   {
     slug: "red-screen",
     title: "Red Screen Online | Full Screen Red Background",
@@ -223,5 +226,123 @@ export const seoLandingPages: SeoLandingPage[] = [
       { question: "Is backlight bleed easier to see on black?", answer: "Yes. Bright patches stand out most on a dark screen." },
       { question: "Can this fix backlight bleed?", answer: "No. It only helps you inspect the display." }
     ]
+  },
+  {
+    slug: "stuck-pixel-test",
+    title: "Stuck Pixel Test Online | Full Screen Color Cycle",
+    h1: "Stuck Pixel Test",
+    description: "Use full-screen colors to look for stuck pixels that stay red, green, blue or bright while the rest of the screen changes.",
+    color: "#ff0000",
+    presets: [{ name: "Red", hex: "#ff0000" }, { name: "Green", hex: "#00b050" }, { name: "Blue", hex: "#0057ff" }, { name: "White", hex: "#ffffff" }, { name: "Black", hex: "#000000" }],
+    intro: "A stuck pixel test uses solid color screens to reveal pixels that stay on one color when the rest of the display changes.",
+    sections: [
+      { title: "How to use it", body: ["Clean the screen, open fullscreen, and move through red, green, blue, white and black. Pause on any color where a tiny dot stays different from the surrounding screen.", "Use the Dead Pixel Test if you want auto-cycle controls and the full color sequence."] },
+      { title: "Best uses", body: ["This page is useful when a pixel looks bright or colored instead of dark. Red, green and blue are the most important colors because they match the main subpixel channels."] },
+      { title: "Common mistakes", body: ["Do not assume a mark is a stuck pixel until you clean the screen. Do not use this page as a repair tool. It helps you inspect only."] }
+    ],
+    faqs: [
+      { question: "What does a stuck pixel look like?", answer: "It may stay red, green, blue, white or bright while the rest of the screen changes." },
+      { question: "Can this repair a stuck pixel?", answer: "No. It only helps you inspect the display." }
+    ]
+  },
+  {
+    slug: "screen-uniformity-test",
+    title: "Screen Uniformity Test | Gray and Color Display Check",
+    h1: "Screen Uniformity Test",
+    description: "Check screen brightness and tint uniformity with gray and solid color full-screen backgrounds.",
+    color: "#808080",
+    presets: [{ name: "Gray", hex: "#808080" }, { name: "White", hex: "#ffffff" }, { name: "Black", hex: "#000000" }, { name: "Blue", hex: "#0057ff" }],
+    intro: "A screen uniformity test helps you compare brightness, tint and patchiness across a display using gray and solid colors.",
+    sections: [
+      { title: "How to test uniformity", body: ["Open the gray screen in fullscreen and sit at your normal viewing distance. Look for areas that appear warmer, cooler, brighter or darker than the rest.", "Repeat with white and black. Gray is the main check, but other colors can show tint and glow issues."] },
+      { title: "Best settings", body: ["Use normal brightness first. Then lower and raise brightness to see whether the issue changes. Avoid reflections and test from your normal viewing angle."] },
+      { title: "Common mistakes", body: ["Do not judge uniformity from a sharp side angle unless that is how you use the display. Do not compare two screens with different brightness settings."] }
+    ],
+    faqs: [
+      { question: "Why use gray for uniformity?", answer: "Gray makes uneven brightness and tint easier to compare than many saturated colors." },
+      { question: "Is some uniformity variation normal?", answer: "Yes. Many displays have small differences across the panel." }
+    ]
+  },
+  {
+    slug: "warm-light-screen",
+    title: "Warm Light Screen | Full Screen Warm White Light",
+    h1: "Warm Light Screen",
+    description: "Open a warm full-screen light for video calls, desk light and softer evening lighting.",
+    color: "#fff2d8",
+    presets: [{ name: "Warm white", hex: "#fff2d8" }, { name: "Soft amber", hex: "#ffe6b8" }, { name: "Bright white", hex: "#ffffff" }],
+    intro: "A warm light screen uses a softer white color that can feel more comfortable at night or on video calls.",
+    sections: [
+      { title: "How to use it", body: ["Choose warm white, lower brightness, and open fullscreen. Place the screen so it lights the room or your face without pointing harsh light into your eyes."] },
+      { title: "Best uses", body: ["Warm light is useful for video calls, desk light and calm backgrounds. It often looks more natural than pure white in rooms with warm lamps."] },
+      { title: "Common mistakes", body: ["Do not set brightness to maximum in a dark room. Do not use orange or yellow if you want natural camera lighting; warm white is usually better."] }
+    ],
+    faqs: [
+      { question: "Is warm light good for video calls?", answer: "Yes. It can look natural in rooms with warm lamps." },
+      { question: "Is warm light easier on the eyes?", answer: "Many people find it softer than bright cool white, especially at night." }
+    ]
+  },
+  {
+    slug: "soft-light-screen",
+    title: "Soft Light Screen | Gentle Full Screen Light",
+    h1: "Soft Light Screen",
+    description: "Use a soft full-screen light for camera fill, gentle room light and short low-harshness lighting tasks.",
+    color: "#fff7ed",
+    presets: [{ name: "Soft light", hex: "#fff7ed" }, { name: "Warm white", hex: "#fff2d8" }, { name: "Cool white", hex: "#eef6ff" }],
+    intro: "A soft light screen gives you a gentle full-screen light source with brightness control.",
+    sections: [
+      { title: "How to use it", body: ["Start with soft light and medium brightness. Open fullscreen, check the room or camera preview, then adjust brightness slowly."] },
+      { title: "Best uses", body: ["Soft light works well for video calls, quick photos, reading nearby labels and adding gentle fill light on a desk."] },
+      { title: "Common mistakes", body: ["Do not place the screen too close to your eyes. Do not use it as your only light where safety matters."] }
+    ],
+    faqs: [
+      { question: "What makes this different from white screen?", answer: "It starts with a softer warm white instead of pure bright white." },
+      { question: "Can I use it on a phone?", answer: "Yes. It works in the browser, with fullscreen support depending on the device." }
+    ]
+  },
+  {
+    slug: "focus-timer-screen",
+    title: "Focus Timer Screen | Full Screen Minimal Timer",
+    h1: "Focus Timer Screen",
+    description: "Use a simple full-screen focus timer with quiet background colors and no account required.",
+    color: "#111827",
+    presets: [{ name: "Dark focus", hex: "#111827" }, { name: "Soft white", hex: "#f8fafc" }, { name: "Warm gray", hex: "#e5e7eb" }],
+    intro: "A focus timer screen gives you a plain fullscreen background with a timer so a second monitor can stay useful without distracting you.",
+    sections: [
+      { title: "How to use it", body: ["Choose a low-distraction background, set the timer, and open fullscreen. Keep the color comfortable for your room and press Esc to exit when supported."] },
+      { title: "Best uses", body: ["Use it for short focus sessions, breaks, reading time or a second monitor that you do not want filled with apps."] },
+      { title: "Common mistakes", body: ["Do not use a bright white timer in a dark room if it pulls attention. Pick black or warm gray for lower visual noise."] }
+    ],
+    faqs: [
+      { question: "Does this require an account?", answer: "No. It runs in your browser." },
+      { question: "Can I use a dark background?", answer: "Yes. Dark focus is the default preset." }
+    ]
   }
 ];
+
+export const seoLandingPages: SeoLandingPage[] = rawSeoLandingPages.map((page) => ({
+  ...page,
+  quickAnswer: page.quickAnswer ?? `${page.intro} Choose a color, open it full screen, adjust brightness if needed, and press Esc to exit where supported.`,
+  cluster: page.cluster ?? inferCluster(page.slug),
+  summaryRows: page.summaryRows ?? [
+    { label: "Best for", value: inferBestFor(page.slug) },
+    { label: "Main control", value: "Color presets, brightness, timer and fullscreen." },
+    { label: "Exit", value: "Press Esc where supported or use the on-screen exit button." }
+  ]
+}));
+
+function inferCluster(slug: string) {
+  if (["backlight-bleed-test", "stuck-pixel-test", "screen-uniformity-test"].includes(slug)) return { title: "Screen Tests", href: "/screen-tests" };
+  if (["warm-light-screen", "soft-light-screen"].includes(slug)) return { title: "Screen Lighting", href: "/screen-lighting" };
+  if (["blank-screen", "focus-timer-screen"].includes(slug)) return { title: "Focus Screens", href: "/focus-screens" };
+  return { title: "Color Screens", href: "/color-screens" };
+}
+
+function inferBestFor(slug: string) {
+  if (slug.includes("bleed")) return "Checking edge glow on a dark screen.";
+  if (slug.includes("uniformity")) return "Checking brightness and tint consistency.";
+  if (slug.includes("stuck")) return "Finding pixels stuck on one color.";
+  if (slug.includes("light")) return "Using the screen as a soft light source.";
+  if (slug.includes("focus")) return "Low-distraction timed focus sessions.";
+  if (slug.includes("cleaning")) return "Finding dust, fingerprints and streaks.";
+  return "Opening a plain full-screen color quickly.";
+}

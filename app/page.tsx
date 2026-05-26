@@ -6,7 +6,8 @@ import { FullscreenColorTool } from "@/components/FullscreenColorTool";
 import { GuideCard } from "@/components/GuideCard";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/RelatedTools";
-import { breadcrumbSchema, faqSchema, webApplicationSchema } from "@/lib/seo";
+import { funScreens } from "@/lib/fun-screens";
+import { breadcrumbSchema, faqSchema, organizationSchema, webApplicationSchema, websiteSchema } from "@/lib/seo";
 import { canonical, guides, toolLinks } from "@/lib/site";
 
 const faqs = [
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-6">
-      <JsonLd data={[webApplicationSchema("ScreenTools", "Simple full-screen color tools for your browser.", "/"), breadcrumbSchema([{ name: "Home", path: "/" }]), faqSchema(faqs)]} />
+      <JsonLd data={[websiteSchema(), organizationSchema(), webApplicationSchema("ScreenTools", "Simple full-screen color tools for your browser.", "/"), breadcrumbSchema([{ name: "Home", path: "/" }]), faqSchema(faqs)]} />
       <section className="mb-5">
         <h1 className="text-3xl font-bold tracking-normal sm:text-4xl">Simple full-screen color tools</h1>
         <p className="mt-3 max-w-3xl text-gray-700">Use white, black and custom color screens for lighting, focus, screen cleaning and monitor testing.</p>
@@ -43,6 +44,34 @@ export default function HomePage() {
             <Link key={tool.href} href={tool.href} className="rounded border border-line bg-white p-4 hover:border-gray-500">
               <h3 className="font-bold">{tool.title}</h3>
               <p className="mt-2 text-sm text-gray-600">{tool.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="my-10" aria-labelledby="site-sections">
+        <h2 id="site-sections" className="text-2xl font-bold">Browse by use</h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { title: "Color Screens", href: "/color-screens", description: "White, black, custom and preset full-screen colors." },
+            { title: "Screen Tests", href: "/screen-tests", description: "Dead pixel, monitor, backlight and uniformity checks." },
+            { title: "Screen Lighting", href: "/screen-lighting", description: "Use your screen as a simple light source." },
+            { title: "Focus Screens", href: "/focus-screens", description: "Blank screens and timers for low-distraction work." }
+          ].map((item) => (
+            <Link key={item.href} href={item.href} className="rounded border border-line bg-white p-4 hover:border-gray-500">
+              <h3 className="font-bold">{item.title}</h3>
+              <p className="mt-2 text-sm text-gray-600">{item.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="my-10" aria-labelledby="fun-screens-home">
+        <h2 id="fun-screens-home" className="text-2xl font-bold">Fun screens</h2>
+        <p className="mt-2 max-w-3xl text-gray-700">Harmless full-screen visual effects for jokes, videos and backgrounds.</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {funScreens.filter((screen) => ["broken-screen-prank", "fake-windows-update", "fake-blue-screen", "dvd-screensaver", "glitch-screen", "code-rain-screen"].includes(screen.slug)).map((screen) => (
+            <Link key={screen.slug} href={`/${screen.slug}`} className="rounded border border-line bg-white p-4 hover:border-gray-500">
+              <h3 className="font-bold">{screen.cardTitle}</h3>
+              <p className="mt-2 text-sm text-gray-600">{screen.cardDescription}</p>
             </Link>
           ))}
         </div>

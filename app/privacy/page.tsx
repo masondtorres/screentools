@@ -17,7 +17,8 @@ export default function PrivacyPage() {
       <h1>Privacy Policy</h1>
       <p>ScreenTools does not require an account, login or download to use the tools.</p>
       <p>Basic analytics may be added later to understand page visits and tool use. Display ads may also be added later. If ads or analytics are added, this policy should be updated with the active providers and opt-out details.</p>
-      <p>Do not enter private information into color fields or contact messages.</p>
+      <p>Current tool controls, such as color fields and timer settings, run in the browser. Some settings may be saved locally in your browser when you choose to save a preset.</p>
+      <p>Contact links use email. Do not send sensitive information unless you are comfortable sending it by email.</p>
     </main>
   );
 }

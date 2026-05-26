@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { presetColors } from "@/lib/site";
 
 type Props = {
@@ -12,6 +13,14 @@ type Props = {
 };
 
 export function ColorPicker({ color, rgb, onHexChange, onRgbChange, onPreset, presets = presetColors }: Props) {
+  const [hexDraft, setHexDraft] = useState(color);
+  const cleanDraft = hexDraft.trim().replace("#", "");
+  const isValidHex = /^[0-9a-fA-F]{3}$/.test(cleanDraft) || /^[0-9a-fA-F]{6}$/.test(cleanDraft);
+
+  useEffect(() => {
+    setHexDraft(color);
+  }, [color]);
+
   return (
     <div className="grid gap-4">
       <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
@@ -31,12 +40,19 @@ export function ColorPicker({ color, rgb, onHexChange, onRgbChange, onPreset, pr
       <label className="grid gap-1 text-sm font-semibold">
         Custom HEX
         <input
-          value={color}
-          onChange={(event) => onHexChange(event.target.value)}
+          value={hexDraft}
+          onChange={(event) => {
+            const value = event.target.value;
+            setHexDraft(value);
+            const clean = value.trim().replace("#", "");
+            if (/^[0-9a-fA-F]{3}$/.test(clean) || /^[0-9a-fA-F]{6}$/.test(clean)) onHexChange(value);
+          }}
           className="min-h-11 rounded border border-line px-3"
           aria-label="Custom HEX color"
+          aria-invalid={!isValidHex}
           placeholder="#ff0000"
         />
+        {!isValidHex ? <span className="text-xs text-red-700">Use 3 or 6 HEX characters, such as #fff or #ff0000.</span> : null}
       </label>
       <div className="grid grid-cols-3 gap-2">
         {(["r", "g", "b"] as const).map((channel) => (

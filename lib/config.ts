@@ -1,3 +1,5 @@
 export const config = {
-  showAdPlaceholders: true
+  contactEmail: "masondtorres@duck.com",
+  showAdPlaceholders: true,
+  showAffiliatePlaceholders: true
 };

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FAQBlock } from "@/components/FAQBlock";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema, faqSchema } from "@/lib/seo";
+import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/seo";
 import { guideArticles } from "@/lib/guides";
 import { canonical } from "@/lib/site";
 
@@ -30,7 +30,7 @@ export default async function GuideDetailPage({ params }: Props) {
   if (!guide) return null;
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
-      <JsonLd data={[breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Guides", path: "/guides" }, { name: guide.title, path: `/guides/${slug}` }]), faqSchema(guide.faqs)]} />
+      <JsonLd data={[articleSchema(guide.title, guide.description, `/guides/${slug}`), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Guides", path: "/guides" }, { name: guide.title, path: `/guides/${slug}` }]), faqSchema(guide.faqs)]} />
       <h1 className="text-3xl font-bold sm:text-4xl">{guide.title}</h1>
       <p className="mt-4 text-lg text-gray-700">{guide.intro}</p>
       <div className="content-prose mt-4">
@@ -40,6 +40,29 @@ export default async function GuideDetailPage({ params }: Props) {
             {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </section>
         ))}
+        <section>
+          <h2>Use-case table</h2>
+          <div className="overflow-x-auto rounded border border-line">
+            <table className="w-full border-collapse text-left text-sm">
+              <thead>
+                <tr>
+                  <th className="border-b border-line px-3 py-2">Need</th>
+                  <th className="border-b border-line px-3 py-2">Use</th>
+                  <th className="border-b border-line px-3 py-2">Why</th>
+                </tr>
+              </thead>
+              <tbody>
+                {guide.related.map((item, index) => (
+                  <tr key={item.href}>
+                    <td className="border-b border-line px-3 py-2">{index === 0 ? "Main task" : index === 1 ? "Next check" : "Extra context"}</td>
+                    <td className="border-b border-line px-3 py-2"><Link href={item.href}>{item.title}</Link></td>
+                    <td className="border-b border-line px-3 py-2">This related tool helps you check the screen with a simple visible state.</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
         <section>
           <h2>Before you finish</h2>
           <p>Use these tools as simple visual checks. They are useful because they remove distractions and show one screen state at a time. They do not replace hardware repair, professional calibration, device warranty terms or the cleaning instructions from your device maker.</p>
@@ -55,6 +78,18 @@ export default async function GuideDetailPage({ params }: Props) {
           <ul>
             {guide.related.map((item) => <li key={item.href}><Link href={item.href}>{item.title}</Link></li>)}
           </ul>
+        </section>
+        <section>
+          <h2>Related guides</h2>
+          <ul>
+            {guideArticles.filter((item) => item.slug !== guide.slug).slice(0, 2).map((item) => (
+              <li key={item.slug}><Link href={`/guides/${item.slug}`}>{item.title}</Link></li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h2>Summary</h2>
+          <p>Start with the simple screen state that answers your question. Use fullscreen, keep brightness comfortable, and compare one result at a time. ScreenTools can help you see colors, light and display patterns, but it does not repair hardware or replace device maker instructions.</p>
         </section>
       </div>
       <FAQBlock items={guide.faqs} />

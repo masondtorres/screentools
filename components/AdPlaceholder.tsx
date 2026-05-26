@@ -1,6 +1,14 @@
+"use client";
+
+import { useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { config } from "@/lib/config";
 
 export function AdPlaceholder({ label = "Advertisement" }: { label?: string }) {
+  useEffect(() => {
+    if (config.showAdPlaceholders) trackEvent("ad_placeholder_viewed", { label });
+  }, [label]);
+
   if (!config.showAdPlaceholders) return null;
 
   return (
