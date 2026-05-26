@@ -13,6 +13,7 @@ export function Footer() {
           <Link href="/black-screen">Black Screen</Link>
           <Link href="/color-screen">Color Screen</Link>
           <Link href="/monitor-test">Monitor Test</Link>
+          <Link href="/bulk-screen-testing">Bulk Testing</Link>
         </div>
         <div className="grid gap-2">
           <Link href="/about">About</Link>

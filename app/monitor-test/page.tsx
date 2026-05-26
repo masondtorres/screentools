@@ -5,7 +5,7 @@ import { canonical } from "@/lib/site";
 
 const sections = [
   { title: "How to test your monitor", body: ["Open each test pattern in fullscreen. Look for uneven color, bent grid lines, blurry text, banding or bright patches on dark screens.", "Test one display at a time. If you use more than one monitor, move the browser window to the screen you want to check before entering fullscreen."] },
-  { title: "What each test checks", body: ["Solid color checks color uniformity. Gradients show banding. The grid checks alignment. Text checks sharpness. The backlight screen helps reveal glow or bleed.", "These checks are visual. They can help you notice obvious problems, but they do not replace a colorimeter or repair test."] },
+  { title: "What each test checks", body: ["Solid color checks color uniformity. Gradients show banding. The grid checks alignment. Checkerboard helps reveal scaling issues. Text checks sharpness. The backlight screen helps reveal glow or bleed. Gray uniformity helps show tint and brightness changes.", "These checks are visual. They can help you notice obvious problems, but they do not replace a colorimeter or repair test."] },
   { title: "Color uniformity", body: ["A solid color should look even from edge to edge. Some small variation is normal, especially on large or older panels."] },
   { title: "Grid and sharpness", body: ["The grid should look straight and evenly spaced. Text should look clear at your normal viewing distance and display scaling."] },
   { title: "Backlight bleed check", body: ["Use the dark test in a dim room. Look for bright patches near edges or corners. Lower room reflections before judging the result."] }

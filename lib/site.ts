@@ -1,3 +1,5 @@
+import { guideArticles } from "@/lib/guides";
+
 export const site = {
   name: "ScreenTools",
   url: "https://you-are-building-a-production-ready-ruby.vercel.app",
@@ -14,17 +16,10 @@ export const toolLinks = [
   { title: "Zoom Light", href: "/zoom-light", description: "Use your screen as soft light for video calls." }
 ];
 
-export const guides = [
-  "What Is a White Screen Used For?",
-  "How to Test a Monitor for Dead Pixels",
-  "How to Use Your Screen as a Light",
-  "How to Clean Your Screen Safely",
-  "Best Colors for Monitor Testing",
-  "How to Use a White Screen for Video Calls"
-].map((title) => ({
-  title,
-  href: `/guides/${title.toLowerCase().replaceAll(" ", "-").replaceAll("?", "")}`,
-  description: "A short plain-language guide for using simple screen tools."
+export const guides = guideArticles.map((guide) => ({
+  title: guide.title,
+  href: `/guides/${guide.slug}`,
+  description: guide.description
 }));
 
 export const presetColors = [
