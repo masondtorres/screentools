@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdPlaceholder } from "@/components/AdPlaceholder";
+import { BulkCtaLink } from "@/components/BulkCtaLink";
 import { FAQBlock } from "@/components/FAQBlock";
 import { FullscreenColorTool } from "@/components/FullscreenColorTool";
 import { FunScreenCard } from "@/components/FunScreenCard";
@@ -96,7 +97,7 @@ export default function HomePage() {
       <section className="my-10 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-sm" aria-labelledby="business-tools">
         <h2 id="business-tools" className="text-2xl font-bold">For businesses and teams</h2>
         <p className="mt-2 max-w-3xl text-gray-700">Need to check more than one phone, tablet, monitor, TV or classroom display? Create a simple browser-based testing workflow.</p>
-        <Link href="/bulk-screen-testing" className="mt-4 inline-block rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Bulk screen testing help</Link>
+        <BulkCtaLink href="/bulk-screen-testing" className="mt-4 inline-block rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Bulk screen testing help</BulkCtaLink>
       </section>
       <FAQBlock items={faqs} />
       <section className="my-10" aria-labelledby="related-guides">

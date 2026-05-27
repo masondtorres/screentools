@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BulkCtaLink } from "@/components/BulkCtaLink";
 
 export function Footer() {
   return (
@@ -26,7 +27,7 @@ export function Footer() {
         <div className="grid content-start gap-2">
           <p className="font-bold text-ink">For Businesses</p>
           <Link href="/bulk-screen-testing">Bulk Screen Testing</Link>
-          <Link href="/contact?reason=bulk-screen-testing">Request Help</Link>
+          <BulkCtaLink>Request Help</BulkCtaLink>
         </div>
       </div>
     </footer>

@@ -15,7 +15,11 @@ export type AnalyticsEvent =
   | "ad_slot_visible"
   | "affiliate_block_visible"
   | "affiliate_link_clicked"
+  | "bulk_page_view"
+  | "bulk_cta_click"
   | "bulk_testing_cta_clicked"
+  | "contact_reason_bulk_screen_testing"
+  | "contact_form_submit"
   | "contact_email_clicked"
   | "checklist_cta_clicked"
   | "email_signup";

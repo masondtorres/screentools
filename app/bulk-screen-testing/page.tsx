@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BulkCtaLink } from "@/components/BulkCtaLink";
+import { BulkLeadTracker } from "@/components/BulkLeadTracker";
 import { ChecklistCTA } from "@/components/ChecklistCTA";
 import { ContactEmailLink } from "@/components/ContactEmailLink";
 import { FAQBlock } from "@/components/FAQBlock";
@@ -52,17 +54,17 @@ export const metadata: Metadata = {
 
 export default function BulkScreenTestingPage() {
   const email = config.CONTACT_EMAIL;
-  const contactHref = "/contact?reason=bulk-screen-testing";
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
+      <BulkLeadTracker />
       <JsonLd data={[webPageSchema("Bulk Screen Testing Help", metadata.description as string, "/bulk-screen-testing"), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Bulk Screen Testing", path: "/bulk-screen-testing" }]), faqSchema(faqs)]} />
       <section className="rounded-3xl border border-white/70 bg-white/85 p-5 shadow-soft sm:p-8">
         <p className="text-sm font-bold uppercase tracking-wide text-blue-700">For businesses and teams</p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-5xl">Bulk Screen Testing Help</h1>
         <p className="mt-4 max-w-4xl text-lg text-gray-700">Need to check more than one screen? ScreenTools can help you create a simple browser-based testing workflow for phones, tablets, monitors, TVs, classroom devices or office displays.</p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link href={contactHref} className="rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Request bulk screen testing help</Link>
+          <BulkCtaLink className="rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Request bulk screen testing help</BulkCtaLink>
           <ContactEmailLink email={email} subject="ScreenTools bulk screen testing" className="rounded-xl border border-line bg-white px-5 py-3 font-bold hover:border-blue-400">Email {email}</ContactEmailLink>
         </div>
       </section>
@@ -81,7 +83,7 @@ export default function BulkScreenTestingPage() {
               <p className="mt-2 font-semibold text-blue-700">{offer.bestFor}</p>
               <p className="mt-3 text-gray-700">{offer.details}</p>
               <p className="mt-3 text-sm font-semibold text-gray-600">No prices shown yet. Request details first.</p>
-              <Link href={contactHref} className="mt-5 inline-block rounded-xl bg-ink px-4 py-2 font-bold text-white hover:bg-slate-700">{offer.cta}</Link>
+              <BulkCtaLink className="mt-5 inline-block rounded-xl bg-ink px-4 py-2 font-bold text-white hover:bg-slate-700">{offer.cta}</BulkCtaLink>
             </article>
           ))}
         </div>
@@ -104,7 +106,7 @@ export default function BulkScreenTestingPage() {
       <section className="my-8 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-sm">
         <h2 className="text-2xl font-bold">Request details</h2>
         <p className="mt-2 text-gray-700">Need a repeatable screen testing workflow for multiple devices? Email <ContactEmailLink email={email} subject="ScreenTools bulk screen testing" /> with your device count, testing process and what you need checked.</p>
-        <Link href={contactHref} className="mt-5 inline-block rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Request bulk screen testing help</Link>
+        <BulkCtaLink className="mt-5 inline-block rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Request bulk screen testing help</BulkCtaLink>
       </section>
 
       <FAQBlock items={faqs} />

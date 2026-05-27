@@ -58,6 +58,40 @@ Replace the placeholder links in `components/RecommendedGear.tsx` with real affi
 
 Keep monetization flags off until each layer is real: `ENABLE_ADS=false`, `ENABLE_AFFILIATES=false`, and `ENABLE_PAID_DOWNLOADS=false`.
 
+## Bulk Screen Testing Lead Workflow
+
+Purpose: Capture business inquiries from people who need to test many screens with a simple browser-based workflow.
+
+Audience: Phone repair shops, electronics refurbishers, resellers, schools, IT departments, office managers, AV installers and small businesses.
+
+Trigger: A visitor clicks a bulk screen testing CTA and lands on `/contact?reason=bulk-screen-testing`.
+
+Owner: Mason.
+
+Approval point: Mason reviews every lead before any quote.
+
+Output: Screen testing checklist, custom workflow recommendation or setup quote.
+
+Failure point: The form works but no one replies.
+
+Rollback step: Disable the bulk CTA or route it to general contact.
+
+Test case: Submit a fake bulk inquiry for 25 screens.
+
+Internal reply script:
+
+Subject: Bulk screen testing setup
+
+Body:
+
+Thanks for reaching out. A few quick questions so I can point you in the right direction:
+
+1. How many screens do you need to test?
+2. Are these laptops, monitors, TVs or mixed devices?
+3. Is this a one-time check or a repeat workflow for your team?
+
+Once I have that, I’ll send back the simplest setup path.
+
 ## Configure contact email
 
 The public contact email is set with `CONTACT_EMAIL` and defaults to `masondtorres@duck.com`. Contact CTAs use that value. The `/contact` form posts to a server API route and sends through Resend when `RESEND_API_KEY` is configured.

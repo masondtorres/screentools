@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { BelowToolAdSlot, InContentAdSlot } from "@/components/AdSlot";
+import { BulkCtaLink } from "@/components/BulkCtaLink";
 import { ChecklistCTA } from "@/components/ChecklistCTA";
 import { FAQBlock } from "@/components/FAQBlock";
 import { JsonLd } from "@/components/JsonLd";
@@ -47,7 +48,7 @@ export function ToolPageTemplate({ path, title, intro, children, sections, faqs,
         <section className="my-8 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-sm">
           <h2 className="text-2xl font-bold">Testing multiple screens?</h2>
           <p className="mt-2 text-gray-700">If you need to check many phones, tablets, monitors or classroom displays, see the bulk screen testing help page.</p>
-          <Link href="/bulk-screen-testing" className="mt-4 inline-block rounded-xl bg-ink px-4 py-2 font-bold text-white hover:bg-slate-700">Bulk screen testing help</Link>
+          <BulkCtaLink href="/bulk-screen-testing" className="mt-4 inline-block rounded-xl bg-ink px-4 py-2 font-bold text-white hover:bg-slate-700">Bulk screen testing help</BulkCtaLink>
         </section>
       ) : null}
       <section className="my-8 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-sm" aria-labelledby="quick-answer">

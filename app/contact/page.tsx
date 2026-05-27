@@ -21,6 +21,7 @@ export default function ContactPage() {
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }])} />
       <h1>Contact</h1>
       <p>For feedback, corrections, bug reports, feature requests or bulk screen testing questions, email us at <ContactEmailLink email={email} />.</p>
+      <p>If you came from bulk screen testing, choose that reason or use the preselected form. Tell us how many screens you need to check and what kind of team you manage. We will send back the simplest setup path.</p>
       <p>You can also use the contact form below. If email delivery is not configured, the form will show a setup message and the direct email link will stay available.</p>
       <ContactForm contactEmail={email} />
     </main>

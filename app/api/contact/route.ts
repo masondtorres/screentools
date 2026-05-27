@@ -27,7 +27,11 @@ export async function POST(request: Request) {
   const email = clean(String(form.get("email") || ""), 200);
   const reasonValue = clean(String(form.get("reason") || ""), 80);
   const message = clean(String(form.get("message") || ""), maxMessageLength);
-  const pageUrl = clean(String(form.get("pageUrl") || ""), 500);
+  const sourcePage = clean(String(form.get("source_page") || ""), 500);
+  const currentUrl = clean(String(form.get("current_url") || form.get("pageUrl") || ""), 500);
+  const referrer = clean(String(form.get("referrer") || ""), 500);
+  const submittedAt = clean(String(form.get("timestamp") || ""), 80);
+  const userAgent = clean(request.headers.get("user-agent") || "", 500);
   const reason = reasons.get(reasonValue);
 
   if (!name || name.length > 100) return invalid("Name is required.");
@@ -46,7 +50,11 @@ export async function POST(request: Request) {
     `Name: ${name}`,
     `Email: ${email}`,
     `Reason: ${reason}`,
-    `Page URL: ${pageUrl || "Not provided"}`,
+    `Source page: ${sourcePage || "Not provided"}`,
+    `Current URL: ${currentUrl || "Not provided"}`,
+    `Referrer: ${referrer || "Not provided"}`,
+    `Submitted timestamp: ${submittedAt || "Not provided"}`,
+    `User agent: ${userAgent || "Not provided"}`,
     `Timestamp: ${timestamp}`,
     "",
     "Message:",
