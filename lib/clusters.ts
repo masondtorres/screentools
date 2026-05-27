@@ -56,13 +56,15 @@ export const clusterPages: ClusterPage[] = [
       { title: "Monitor Test", href: "/monitor-test", description: "Use colors, gradients, grids, checkerboards and text checks." },
       { title: "Backlight Bleed Test", href: "/backlight-bleed-test", description: "Use a black screen in a dim room to inspect glow." },
       { title: "Stuck Pixel Test", href: "/stuck-pixel-test", description: "Cycle colors to reveal pixels that stay on one color." },
-      { title: "Screen Uniformity Test", href: "/screen-uniformity-test", description: "Use gray and color fields to compare brightness and tint." }
+      { title: "Screen Uniformity Test", href: "/screen-uniformity-test", description: "Use gray and color fields to compare brightness and tint." },
+      { title: "Bulk Screen Testing Help", href: "/bulk-screen-testing", description: "Request help creating a simple repeatable workflow for many screens." }
     ],
     table: [
       { need: "Tiny dark dot", tool: "Dead Pixel Test", href: "/dead-pixel-test", why: "White and color screens make dark pixels easier to see." },
       { need: "Colored dot", tool: "Stuck Pixel Test", href: "/stuck-pixel-test", why: "Color cycling can reveal a pixel stuck on one channel." },
       { need: "Edge glow", tool: "Backlight Bleed Test", href: "/backlight-bleed-test", why: "Black in a dim room shows bright patches." },
-      { need: "Uneven brightness", tool: "Screen Uniformity Test", href: "/screen-uniformity-test", why: "Gray makes patchy panels easier to compare." }
+      { need: "Uneven brightness", tool: "Screen Uniformity Test", href: "/screen-uniformity-test", why: "Gray makes patchy panels easier to compare." },
+      { need: "Repeated checks across devices", tool: "Bulk Screen Testing Help", href: "/bulk-screen-testing", why: "It helps teams plan a repeatable test order." }
     ],
     faqs: [
       { question: "Can these tests fix a screen?", answer: "No. They help you inspect possible issues only." },

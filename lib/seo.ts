@@ -54,6 +54,16 @@ export function articleSchema(name: string, description: string, path: string) {
   };
 }
 
+export function webPageSchema(name: string, description: string, path: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url: `${site.url}${path}`
+  };
+}
+
 export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
   return {
     "@context": "https://schema.org",

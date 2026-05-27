@@ -49,6 +49,15 @@ Use `components/AdPlaceholder.tsx` as the replacement point for ad units. Do not
 
 Replace the placeholder links in `components/RecommendedGear.tsx` with real affiliate URLs. Keep labels clear and avoid fake prices, reviews or ratings.
 
+## Future monetization path
+
+1. B2B bulk screen testing inquiries through `/bulk-screen-testing`.
+2. AdSense or Journey by Mediavine after traffic grows.
+3. Affiliate links on buyer-intent guide pages.
+4. Downloadable testing packs after the free checklist is proven.
+
+Keep monetization flags off until each layer is real: `ENABLE_ADS=false`, `ENABLE_AFFILIATES=false`, and `ENABLE_PAID_DOWNLOADS=false`.
+
 ## Configure contact email
 
 The public contact email is set with `CONTACT_EMAIL` and defaults to `masondtorres@duck.com`. Contact CTAs use that value. The `/contact` form posts to a server API route and sends through Resend when `RESEND_API_KEY` is configured.

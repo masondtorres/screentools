@@ -68,6 +68,9 @@ export default function WebScreensaversPage() {
 
         <h2>Related fun screens</h2>
         <p>Start with <Link href="/code-rain-screen">Code Rain Screen</Link>, <Link href="/dvd-screensaver">DVD Screensaver</Link>, <Link href="/glitch-screen">Glitch Screen</Link> or <Link href="/broken-screen-prank">Broken Screen Prank</Link>.</p>
+
+        <h2>Testing screens for work?</h2>
+        <p>If you need to test many screens instead of using visual backgrounds, visit <Link href="/bulk-screen-testing">Bulk Screen Testing Help</Link>.</p>
       </section>
 
       <FAQBlock items={faqs} />

@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="mt-12 border-t border-line bg-white">
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 text-sm text-gray-600 sm:grid-cols-3">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 text-sm text-gray-600 sm:grid-cols-4">
         <div>
           <p className="font-bold text-ink">ScreenTools</p>
           <p className="mt-2">Simple browser tools for screen colors, light and display checks.</p>
@@ -22,6 +22,11 @@ export function Footer() {
           <Link href="/contact">Contact</Link>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
+        </div>
+        <div className="grid content-start gap-2">
+          <p className="font-bold text-ink">For Businesses</p>
+          <Link href="/bulk-screen-testing">Bulk Screen Testing</Link>
+          <Link href="/contact?reason=bulk-screen-testing">Request Help</Link>
         </div>
       </div>
     </footer>
