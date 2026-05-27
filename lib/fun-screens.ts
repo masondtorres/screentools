@@ -45,21 +45,21 @@ export const funScreens: FunScreenPage[] = [
   },
   {
     slug: "fake-windows-update",
-    title: "Fake Windows Update Screen | Full Screen Update Simulator",
-    h1: "Fake Windows Update Screen",
-    description: "Open a fake Windows-style update screen in full screen. A harmless update simulator for jokes, videos and backgrounds.",
+    title: "Fake Update Screen | Full Screen Update Simulator",
+    h1: "Fake Update Screen",
+    description: "Open a generic fake update screen in full screen. A harmless update simulator for jokes, videos and backgrounds.",
     cardTitle: "Fake Update",
     cardDescription: "A generic update-style screen with custom progress.",
     effect: "update",
     related: ["fake-loading-screen", "fake-frozen-screen", "fake-blue-screen"],
     sections: [
-      { title: "What is a fake update screen?", body: ["This is a generic update-style visual effect. It does not use Windows logos, real system dialogs or real update commands. Nothing is installing or changing on your device."] },
-      { title: "How to use it", body: ["Choose the starting percent, duration and message. Start fullscreen and use it as a harmless visual for a video, background or quick joke. Press Esc to exit fullscreen."] },
+      { title: "What is a fake update screen?", body: ["This is a generic update-style visual effect. It does not use operating system logos, real system dialogs or real update commands. Nothing is installing or changing on your device."] },
+      { title: "How to use it", body: ["Choose the starting percent, duration and message. Open it full screen and use it as a harmless visual for a video, background or quick joke. Press Esc to exit fullscreen."] },
       { title: "Good uses for videos and jokes", body: ["It can work as a background for a skit, a stream scene or a harmless visual gag. Avoid using it in ways that cause panic or block someone from using their own device."] }
     ],
     faqs: [
       { question: "Is this a real update?", answer: "No. It is a visual effect only." },
-      { question: "Does it copy Windows?", answer: "No. It is generic and does not use Windows logos or exact system text." }
+      { question: "Does it copy a real operating system?", answer: "No. It is generic and does not use real logos or exact system text." }
     ]
   },
   {
@@ -92,7 +92,7 @@ export const funScreens: FunScreenPage[] = [
     related: ["code-rain-screen", "glitch-screen", "fake-loading-screen"],
     sections: [
       { title: "What is a bouncing screensaver?", body: ["This is a simple bouncing text effect inspired by old screensavers. It uses your custom text, not the actual DVD logo."] },
-      { title: "How to customize it", body: ["Change the text, background, color, speed and size. Start fullscreen and watch the corner hit counter if you are waiting for a perfect bounce."] },
+      { title: "How to customize it", body: ["Change the text, background, color, speed and size. Open it full screen and watch the corner hit counter if you are waiting for a perfect bounce."] },
       { title: "Use it as a background", body: ["The effect works well as a light background for videos, streams or idle screens. Press Esc to exit fullscreen."] }
     ],
     faqs: [
@@ -132,7 +132,7 @@ export const funScreens: FunScreenPage[] = [
     related: ["dvd-screensaver", "glitch-screen", "fake-loading-screen"],
     sections: [
       { title: "What is code rain?", body: ["Code rain is a falling text visual made with canvas. It is useful as a background for videos, streams or fun displays. It does not use movie logos or branded artwork."] },
-      { title: "How to use it", body: ["Choose a color, speed and density. Start fullscreen and press Esc to exit. Lower density if the screen feels too busy."] },
+      { title: "How to use it", body: ["Choose a color, speed and density. Open it full screen and press Esc to exit. Lower density if the screen feels too busy."] },
       { title: "Responsible use", body: ["This is a visual background only. Do not present it as a real device, account or private-data event."] }
     ],
     faqs: [
@@ -151,7 +151,7 @@ export const funScreens: FunScreenPage[] = [
     related: ["fake-windows-update", "fake-frozen-screen", "dvd-screensaver"],
     sections: [
       { title: "What is a fake loading screen?", body: ["It is a full-screen loading visual with a progress bar or spinner. It does not load files, install software or change your device."] },
-      { title: "How to use it", body: ["Set the message, starting percent, duration and end message. Start fullscreen, then exit with Esc or the on-screen button."] },
+      { title: "How to use it", body: ["Set the message, starting percent, duration and end message. Open it full screen, then exit with Esc or the on-screen button."] },
       { title: "Safe default copy", body: ["Use harmless text like Loading, Almost ready, or This is a visual effect only. Avoid security or payment warnings."] }
     ],
     faqs: [
@@ -170,7 +170,7 @@ export const funScreens: FunScreenPage[] = [
     related: ["fake-loading-screen", "fake-error-screen", "broken-screen-prank"],
     sections: [
       { title: "What is a fake frozen screen?", body: ["It is a visual effect that makes the screen look stuck or frosted. It does not copy real operating system dialogs and it does not freeze the browser."] },
-      { title: "How to use it", body: ["Start fullscreen and use it for a harmless video or background. Press Esc to exit. The browser remains under your control."] },
+      { title: "How to use it", body: ["Open it full screen and use it for a harmless video or background. Press Esc to exit. The browser remains under your control."] },
       { title: "Safe use note", body: ["Do not use it to interrupt someone else's work or make them think a device is damaged."] }
     ],
     faqs: [

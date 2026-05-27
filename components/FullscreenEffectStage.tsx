@@ -27,6 +27,7 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [fallbackFullscreen, setFallbackFullscreen] = useState(false);
+  const [showExitHint, setShowExitHint] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [cornerHits, setCornerHits] = useState(0);
   const [extraCracks, setExtraCracks] = useState<Point[]>([]);
@@ -94,6 +95,7 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
   }, [effect, values.background, values.crackIntensity, values.crackStyle, values.impact, values.seed]);
 
   const enterFullscreen = useCallback(async () => {
+    setShowExitHint(true);
     if (stageRef.current?.requestFullscreen) {
       try {
         await stageRef.current.requestFullscreen();
@@ -112,6 +114,7 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
     if (document.fullscreenElement) await document.exitFullscreen?.();
     setFallbackFullscreen(false);
     setIsFullscreen(false);
+    setShowExitHint(false);
   }, []);
 
   useEffect(() => {
@@ -135,6 +138,25 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
     };
   }, [fallbackFullscreen]);
 
+  const fullscreenActive = isFullscreen || fallbackFullscreen;
+
+  const revealExitHint = useCallback(() => {
+    if (!fullscreenActive) return;
+    setShowExitHint(true);
+  }, [fullscreenActive]);
+
+  useEffect(() => {
+    if (!fullscreenActive || !showExitHint) return;
+    const id = window.setTimeout(() => setShowExitHint(false), 2600);
+    return () => window.clearTimeout(id);
+  }, [fullscreenActive, showExitHint]);
+
+  useEffect(() => {
+    const onAnyKey = () => revealExitHint();
+    window.addEventListener("keydown", onAnyKey);
+    return () => window.removeEventListener("keydown", onAnyKey);
+  }, [revealExitHint]);
+
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(query.matches);
@@ -147,29 +169,38 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
     <section className="tool-panel overflow-hidden rounded-2xl shadow-soft" aria-label={title}>
       <div
         ref={stageRef}
-        className={`${fallbackFullscreen ? "fixed inset-0 z-50 min-h-screen" : "relative min-h-[58vh]"} overflow-hidden bg-black`}
+        className={`${fullscreenActive ? "fixed inset-0 z-50 h-screen min-h-screen" : "relative min-h-[58vh]"} overflow-hidden bg-black`}
+        onMouseMove={revealExitHint}
+        onTouchStart={revealExitHint}
         onClick={(event) => {
-          if (effect === "broken" && isFullscreen) {
+          revealExitHint();
+          if (effect === "broken" && fullscreenActive) {
             const rect = event.currentTarget.getBoundingClientRect();
             setExtraCracks((cracks) => [...cracks, { x: (event.clientX - rect.left) / rect.width, y: (event.clientY - rect.top) / rect.height }].slice(-8));
           }
         }}
       >
         <EffectCanvas effect={effect} values={values} canvasRef={canvasRef} cornerHits={cornerHits} setCornerHits={setCornerHits} extraCracks={extraCracks} reducedMotion={reducedMotion} />
-        <div className="absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur">
+        {!fullscreenActive ? <div className="absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur">
           Visual effect only
-        </div>
-        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-wrap justify-center gap-2 rounded-2xl bg-black/70 p-2 text-white shadow-xl backdrop-blur">
+        </div> : null}
+        {!fullscreenActive ? <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-wrap justify-center gap-2 rounded-2xl bg-black/70 p-2 text-white shadow-xl backdrop-blur">
           <button type="button" onClick={enterFullscreen} className="rounded-xl bg-white px-4 py-2 text-sm font-bold text-black hover:bg-gray-100">Start Full Screen</button>
           <button type="button" onClick={exitFullscreen} className="rounded-xl px-4 py-2 text-sm font-bold hover:bg-white/20">Exit</button>
-        </div>
+        </div> : null}
+        {fullscreenActive && showExitHint ? (
+          <div className="absolute right-3 top-3 flex items-center gap-2 rounded-full bg-black/35 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
+            <span>Esc to exit</span>
+            <button type="button" onClick={exitFullscreen} className="rounded-full bg-white/15 px-2 py-0.5 hover:bg-white/25">Exit</button>
+          </div>
+        ) : null}
       </div>
-      <div className="grid gap-4 p-4 sm:p-5">
+      {!fullscreenActive ? <div className="grid gap-4 p-4 sm:p-5">
         <p className="text-sm font-semibold text-gray-700">Press Esc to exit fullscreen. This is a visual effect only. Use it responsibly.</p>
         {motionWarning ? <p className="rounded-xl bg-yellow-50 p-3 text-sm text-yellow-900">Contains motion. Avoid using this if you are sensitive to flashing or visual effects. Reduced motion settings are respected where practical.</p> : null}
         {effect === "dvd" ? <p className="text-sm font-semibold text-gray-700">Corner hits: {cornerHits}</p> : null}
         <EffectControls effect={effect} values={values} setValue={setValue} reset={() => setExtraCracks([])} />
-      </div>
+      </div> : null}
     </section>
   );
 }
@@ -237,7 +268,7 @@ function EffectCanvas({ effect, values, canvasRef, cornerHits, setCornerHits, ex
   if (canvasEffect) {
     return reducedMotion && effect !== "broken" ? (
       <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
-        <p className="rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold">Motion reduced. Start fullscreen only if comfortable.</p>
+        <p className="rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-center text-sm font-semibold">Motion reduced. Use this visual only if comfortable.</p>
       </div>
     ) : <canvas ref={canvasRef} className="absolute inset-0 h-full w-full bg-black" aria-label={`${effect} visual effect`} />;
   }

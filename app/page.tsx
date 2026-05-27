@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AdPlaceholder } from "@/components/AdPlaceholder";
 import { FAQBlock } from "@/components/FAQBlock";
 import { FullscreenColorTool } from "@/components/FullscreenColorTool";
+import { FunScreenCard } from "@/components/FunScreenCard";
 import { GuideCard } from "@/components/GuideCard";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/RelatedTools";
@@ -31,9 +32,10 @@ export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-6">
       <JsonLd data={[websiteSchema(), organizationSchema(), webApplicationSchema("ScreenTools", "Simple full-screen color tools for your browser.", "/"), breadcrumbSchema([{ name: "Home", path: "/" }]), faqSchema(faqs)]} />
-      <section className="mb-5">
-        <h1 className="text-3xl font-bold tracking-normal sm:text-4xl">Simple full-screen color tools</h1>
-        <p className="mt-3 max-w-3xl text-gray-700">Use white, black and custom color screens for lighting, focus, screen cleaning and monitor testing.</p>
+      <section className="mb-6 rounded-3xl border border-white/70 bg-white/80 p-5 shadow-soft sm:p-8">
+        <p className="text-sm font-bold uppercase tracking-wide text-blue-700">Fast browser screen utilities</p>
+        <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Simple full-screen color tools</h1>
+        <p className="mt-3 max-w-3xl text-lg text-gray-700">Use white, black and custom color screens for lighting, focus, screen cleaning and monitor testing.</p>
       </section>
       <FullscreenColorTool title="Main full-screen color tool" allowDownload />
       <AdPlaceholder />
@@ -41,9 +43,12 @@ export default function HomePage() {
         <h2 id="popular-tools" className="text-2xl font-bold">Popular tools</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {toolLinks.map((tool) => (
-            <Link key={tool.href} href={tool.href} className="rounded border border-line bg-white p-4 hover:border-gray-500">
-              <h3 className="font-bold">{tool.title}</h3>
+            <Link key={tool.href} href={tool.href} className="group overflow-hidden rounded-2xl border border-white/70 bg-white/90 shadow-sm hover:border-blue-200 hover:shadow-soft">
+              <div className="h-20 bg-[radial-gradient(circle_at_25%_30%,rgba(59,130,246,.28),transparent_28%),linear-gradient(135deg,#f8fafc,#dbeafe)]" />
+              <div className="p-4">
+              <h3 className="font-extrabold tracking-tight group-hover:text-blue-700">{tool.title}</h3>
               <p className="mt-2 text-sm text-gray-600">{tool.description}</p>
+              </div>
             </Link>
           ))}
         </div>
@@ -57,9 +62,12 @@ export default function HomePage() {
             { title: "Screen Lighting", href: "/screen-lighting", description: "Use your screen as a simple light source." },
             { title: "Focus Screens", href: "/focus-screens", description: "Blank screens and timers for low-distraction work." }
           ].map((item) => (
-            <Link key={item.href} href={item.href} className="rounded border border-line bg-white p-4 hover:border-gray-500">
-              <h3 className="font-bold">{item.title}</h3>
+            <Link key={item.href} href={item.href} className="group overflow-hidden rounded-2xl border border-white/70 bg-white/90 shadow-sm hover:border-blue-200 hover:shadow-soft">
+              <div className="h-20 bg-[linear-gradient(135deg,#0f172a,#1d4ed8_45%,#f8fafc_46%,#e0f2fe)]" />
+              <div className="p-4">
+              <h3 className="font-extrabold tracking-tight group-hover:text-blue-700">{item.title}</h3>
               <p className="mt-2 text-sm text-gray-600">{item.description}</p>
+              </div>
             </Link>
           ))}
         </div>
@@ -69,10 +77,7 @@ export default function HomePage() {
         <p className="mt-2 max-w-3xl text-gray-700">Harmless full-screen visual effects for jokes, videos and backgrounds.</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {funScreens.filter((screen) => ["broken-screen-prank", "fake-windows-update", "fake-blue-screen", "dvd-screensaver", "glitch-screen", "code-rain-screen"].includes(screen.slug)).map((screen) => (
-            <Link key={screen.slug} href={`/${screen.slug}`} className="rounded-2xl border border-white/70 bg-white/90 p-4 shadow-sm hover:border-blue-200 hover:shadow-soft">
-              <h3 className="font-bold">{screen.cardTitle}</h3>
-              <p className="mt-2 text-sm text-gray-600">{screen.cardDescription}</p>
-            </Link>
+            <FunScreenCard key={screen.slug} title={screen.cardTitle} href={`/${screen.slug}`} description={screen.cardDescription} />
           ))}
         </div>
       </section>
