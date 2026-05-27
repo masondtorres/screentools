@@ -28,11 +28,13 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [fallbackFullscreen, setFallbackFullscreen] = useState(false);
   const [showExitHint, setShowExitHint] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("");
+  const [downloadStatus, setDownloadStatus] = useState("");
   const [reducedMotion, setReducedMotion] = useState(false);
   const [cornerHits, setCornerHits] = useState(0);
   const [extraCracks, setExtraCracks] = useState<Point[]>([]);
   const [values, setValues] = useState<Record<string, string | number | boolean>>({
-    crackStyle: "Light Crack",
+    crackStyle: "Light",
     background: "Black",
     customBackground: "#111827",
     impact: "Center",
@@ -66,22 +68,26 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
     theme: "Blue"
   });
 
-  const setValue = (key: string, value: string | number | boolean) => {
+  const setValue = useCallback((key: string, value: string | number | boolean) => {
     setValues((current) => ({ ...current, [key]: value }));
     trackEvent("effect_setting_changed", { effect, key, value: String(value) });
-  };
+  }, [effect]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const next: Record<string, string | number | boolean> = {};
-    for (const key of ["crackStyle", "background", "customBackground", "impact", "seed"]) {
+    const numericKeys = new Set(["crackIntensity", "seed", "percent", "speed", "size", "intensity", "density", "charSize"]);
+    const booleanKeys = new Set(["glare", "vignette", "reveal", "progress", "errorCode", "trail", "scanlines", "glow"]);
+    for (const key of ["crackStyle", "background", "customBackground", "impact", "seed", "crackIntensity", "glare", "vignette", "message", "endMessage", "percent", "duration", "reveal", "updateTheme", "loadingTheme", "headline", "progress", "errorCode", "text", "backgroundColor", "textColor", "speed", "size", "trail", "intensity", "colorMode", "scanlines", "rainColor", "density", "charSize", "glow", "theme"]) {
       const value = params.get(key);
-      if (value) next[key] = value;
+      if (value === null) continue;
+      if (numericKeys.has(key)) next[key] = Number(value);
+      else if (booleanKeys.has(key)) next[key] = value === "true";
+      else next[key] = value;
     }
-    const intensity = params.get("intensity");
-    if (intensity) next.crackIntensity = Number(intensity);
+    if (!params.get("crackIntensity") && params.get("intensity") && effect === "broken") next.crackIntensity = Number(params.get("intensity"));
     if (Object.keys(next).length) setValues((current) => ({ ...current, ...next }));
-  }, []);
+  }, [effect]);
 
   useEffect(() => {
     if (effect !== "broken") return;
@@ -93,6 +99,47 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
     url.searchParams.set("seed", String(values.seed));
     window.history.replaceState(null, "", url);
   }, [effect, values.background, values.crackIntensity, values.crackStyle, values.impact, values.seed]);
+
+  const copyShareLink = useCallback(async () => {
+    const url = new URL(window.location.href);
+    Object.entries(values).forEach(([key, value]) => {
+      if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+        url.searchParams.set(key, String(value));
+      }
+    });
+    try {
+      await navigator.clipboard?.writeText(url.toString());
+      setCopyStatus("Link copied.");
+    } catch {
+      setCopyStatus("Copy failed. Use the browser address bar.");
+    }
+    trackEvent("copy_link_clicked", { effect });
+    window.setTimeout(() => setCopyStatus(""), 2200);
+  }, [effect, values]);
+
+  const randomizeSeed = useCallback(() => {
+    setValue("seed", Math.floor(Math.random() * 999999) + 1);
+    setExtraCracks([]);
+  }, [setValue]);
+
+  const resetEffect = useCallback(() => {
+    setExtraCracks([]);
+    setValue("seed", 1847);
+  }, [setValue]);
+
+  const downloadPng = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = `${effect}-screentools.png`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setDownloadStatus("PNG downloaded.");
+    trackEvent("download_clicked", { effect });
+    window.setTimeout(() => setDownloadStatus(""), 2200);
+  }, [effect]);
 
   const enterFullscreen = useCallback(async () => {
     setShowExitHint(true);
@@ -196,13 +243,24 @@ export function FullscreenEffectStage({ effect, title, motionWarning }: Props) {
         ) : null}
       </div>
       {!fullscreenActive ? <div className="grid gap-4 p-4 sm:p-5">
-        <p className="text-sm font-semibold text-gray-700">Press Esc to exit fullscreen. This is a visual effect only. Use it responsibly.</p>
+        <p className="text-sm font-semibold text-gray-700">This is a harmless visual effect. Press Esc to exit fullscreen.</p>
         {motionWarning ? <p className="rounded-xl bg-yellow-50 p-3 text-sm text-yellow-900">Contains motion. Avoid using this if you are sensitive to flashing or visual effects. Reduced motion settings are respected where practical.</p> : null}
         {effect === "dvd" ? <p className="text-sm font-semibold text-gray-700">Corner hits: {cornerHits}</p> : null}
         <EffectControls effect={effect} values={values} setValue={setValue} reset={() => setExtraCracks([])} />
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={copyShareLink} className="min-h-11 rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold hover:border-blue-400">Copy share link</button>
+          {canvasEffectSupported(effect) ? <button type="button" onClick={downloadPng} className="min-h-11 rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold hover:border-blue-400">Download PNG</button> : null}
+          {effect === "broken" ? <button type="button" onClick={randomizeSeed} className="min-h-11 rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold hover:border-blue-400">Randomize</button> : null}
+          {effect === "broken" ? <button type="button" onClick={resetEffect} className="min-h-11 rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold hover:border-blue-400">Reset</button> : null}
+        </div>
+        {copyStatus || downloadStatus ? <p className="text-sm font-semibold text-blue-700" role="status">{copyStatus || downloadStatus}</p> : null}
       </div> : null}
     </section>
   );
+}
+
+function canvasEffectSupported(effect: FunEffect) {
+  return effect === "broken" || effect === "glitch" || effect === "code-rain";
 }
 
 function EffectCanvas({ effect, values, canvasRef, cornerHits, setCornerHits, extraCracks, reducedMotion }: {
@@ -522,6 +580,7 @@ function drawGlitch(context: CanvasRenderingContext2D, width: number, height: nu
 function UpdateScreen({ values, progress }: { values: Record<string, string | number | boolean>; progress: number }) {
   const theme = updateThemeClass(String(values.updateTheme));
   const done = progress >= 100 && Boolean(values.reveal);
+  const status = progress > 88 ? "Restarting soon" : progress > 52 ? "Applying visual effect" : progress > 24 ? "Checking display mode" : "Preparing display";
   return (
     <div className={`absolute inset-0 flex items-center justify-center p-6 text-center ${theme}`}>
       <div className="w-full max-w-xl">
@@ -529,7 +588,7 @@ function UpdateScreen({ values, progress }: { values: Record<string, string | nu
           <div className="grid h-20 w-20 place-items-center rounded-full border-4 border-white/25 border-t-white text-lg font-bold">{progress}%</div>
         </div>
         <p className="text-3xl font-bold sm:text-5xl">{done ? values.endMessage : values.message}</p>
-        <p className="mt-4 text-base opacity-85">This is a visual effect only.</p>
+        <p className="mt-4 text-base opacity-85">{status}</p>
         <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/20"><div className="h-full rounded-full bg-white transition-all duration-300" style={{ width: `${progress}%` }} /></div>
       </div>
     </div>
@@ -542,9 +601,9 @@ function BlueCrash({ values, progress }: { values: Record<string, string | numbe
       <div className="max-w-4xl">
         <div className="mb-8 grid h-16 w-16 place-items-center rounded-2xl border border-white/30 text-4xl">!</div>
         <p className="text-3xl font-semibold sm:text-5xl">{String(values.headline)}</p>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90">This is a fake screen effect. Press Esc to exit. Nothing is actually crashing.</p>
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90">A pretend error has occurred. The screen will restart shortly.</p>
         {Boolean(values.progress) ? <p className="mt-8 text-lg">Restart progress: {progress}%</p> : null}
-        {Boolean(values.errorCode) ? <p className="mt-4 font-mono text-sm text-white/75">FAKE_ERROR_CODE: SCREEN_EFFECT_{Math.max(1000, Number(values.seed) || 1847)}</p> : null}
+        {Boolean(values.errorCode) ? <p className="mt-4 font-mono text-sm text-white/75">SCREEN_EFFECT_{Math.max(1000, Number(values.seed) || 1847)}</p> : null}
       </div>
     </div>
   );
@@ -558,7 +617,7 @@ function LoadingScreen({ values, progress }: { values: Record<string, string | n
       <div className="w-full max-w-lg">
         <div className="mx-auto mb-7 h-16 w-16 animate-spin rounded-full border-4 border-current/20 border-t-current" />
         <p className="text-3xl font-bold sm:text-5xl">{done ? values.endMessage : values.message}</p>
-        <p className="mt-4 opacity-75">This is a visual effect only.</p>
+        <p className="mt-4 opacity-75">Preparing display</p>
         <div className="mt-8 h-3 overflow-hidden rounded-full bg-current/15"><div className="h-full rounded-full bg-current transition-all duration-300" style={{ width: `${progress}%` }} /></div>
       </div>
     </div>
@@ -571,7 +630,7 @@ function FrozenScreen() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,.9),transparent_18%),radial-gradient(circle_at_70%_35%,rgba(210,235,255,.8),transparent_22%),linear-gradient(135deg,rgba(255,255,255,.75),rgba(125,180,220,.58))]" />
       <div className="absolute inset-0 backdrop-blur-[1px]" />
       <div className="absolute inset-0 opacity-50" style={{ backgroundImage: "linear-gradient(35deg, transparent 42%, rgba(255,255,255,.55) 43%, transparent 45%), linear-gradient(125deg, transparent 48%, rgba(255,255,255,.35) 49%, transparent 51%)", backgroundSize: "120px 120px" }} />
-      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 rounded-2xl border border-slate-300 bg-white/75 px-5 py-3 text-slate-900 shadow-xl backdrop-blur">Not responding - visual effect only</div>
+      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 rounded-2xl border border-slate-300 bg-white/75 px-5 py-3 text-slate-900 shadow-xl backdrop-blur">Not responding</div>
       <div className="absolute left-[58%] top-[54%] h-0 w-0 rotate-[-18deg] border-b-[22px] border-l-[12px] border-r-[12px] border-b-black border-l-transparent border-r-transparent drop-shadow" />
     </div>
   );

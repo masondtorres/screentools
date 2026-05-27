@@ -12,7 +12,7 @@ export function EffectControls({ effect, values, setValue, reset }: Props) {
     <div className="grid gap-3 rounded-2xl border border-line bg-white p-4 shadow-sm sm:grid-cols-2">
       {effect === "broken" ? (
         <>
-          <Select label="Crack style" value={String(values.crackStyle)} onChange={(value) => setValue("crackStyle", value)} options={["Light Crack", "Heavy Crack", "Corner Impact", "Spiderweb Impact", "Shattered Edge", "Phone Drop"]} />
+          <Select label="Crack style" value={String(values.crackStyle)} onChange={(value) => setValue("crackStyle", value)} options={["Light", "Heavy", "Spiderweb", "Corner Drop", "Shattered Edge"]} />
           <Select label="Background" value={String(values.background)} onChange={(value) => setValue("background", value)} options={["Black", "White", "Blue", "Gray", "Custom color"]} />
           {values.background === "Custom color" ? <Input label="Custom background" value={String(values.customBackground)} onChange={(value) => setValue("customBackground", value)} /> : null}
           <Select label="Impact position" value={String(values.impact)} onChange={(value) => setValue("impact", value)} options={["Center", "Top left", "Top right", "Bottom left", "Bottom right", "Random"]} />

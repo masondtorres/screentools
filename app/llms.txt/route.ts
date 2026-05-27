@@ -11,6 +11,7 @@ Main clusters:
 - Screen Lighting: ${site.url}/screen-lighting
 - Focus Screens: ${site.url}/focus-screens
 - Fun Screens: ${site.url}/fun-screens
+- Web Screensavers: ${site.url}/web-screensavers
 - Guides: ${site.url}/guides
 
 Important URLs:
@@ -21,10 +22,15 @@ Important URLs:
 - Monitor Test: ${site.url}/monitor-test
 - Screen Flashlight: ${site.url}/screen-flashlight
 - Zoom Light: ${site.url}/zoom-light
+- Web Screensavers: ${site.url}/web-screensavers
+- Code Rain Screen: ${site.url}/code-rain-screen
+- DVD Screensaver: ${site.url}/dvd-screensaver
 
 Contact: ${site.url}/contact
+Contact email: ${site.contactEmail}
 Privacy: ${site.url}/privacy
 Terms: ${site.url}/terms
+Fun screens are harmless browser visual effects. They are not real system messages and do not require executable downloads.
 `;
 
   return new Response(body, {

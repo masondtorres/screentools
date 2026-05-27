@@ -14,6 +14,7 @@ export function Footer() {
           <Link href="/screen-lighting">Screen Lighting</Link>
           <Link href="/focus-screens">Focus Screens</Link>
           <Link href="/fun-screens">Fun Screens</Link>
+          <Link href="/web-screensavers">Web Screensavers</Link>
           <Link href="/guides">Guides</Link>
         </div>
         <div className="grid gap-2">

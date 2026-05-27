@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ChecklistCTA } from "@/components/ChecklistCTA";
 import { ContactEmailLink } from "@/components/ContactEmailLink";
 import { JsonLd } from "@/components/JsonLd";
@@ -40,14 +41,14 @@ export default function BulkScreenTestingPage() {
         <h2>Current limitations</h2>
         <p>ScreenTools does not have accounts, payments, dashboards, device history, saved reports or team management. The tools are visual checks only and do not repair devices.</p>
         <h2>Contact CTA</h2>
-        <p>Want a simple workflow for repeated screen checks? Email <ContactEmailLink email={email} subject="ScreenTools bulk screen testing" />.</p>
+        <p>Need a repeatable screen testing workflow for multiple devices? Email <ContactEmailLink email={email} subject="ScreenTools bulk screen testing" /> with your device count, testing process and what you need checked.</p>
         <h2>FAQ</h2>
         <p><strong>Does ScreenTools have a bulk dashboard?</strong> No. The current site is a set of browser tools.</p>
         <p><strong>Can teams use the free tools now?</strong> Yes. Use the public tools on each device or monitor you inspect.</p>
         <p><strong>Does this replace professional diagnostics?</strong> No. It is a simple visual workflow.</p>
       </section>
       <ChecklistCTA />
-      <ContactEmailLink email={email} subject="ScreenTools bulk screen testing" className="mt-6 inline-block rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Contact us for early access</ContactEmailLink>
+      <Link href="/contact?reason=bulk-screen-testing" className="mt-6 inline-block rounded-xl bg-ink px-5 py-3 font-bold text-white hover:bg-slate-700">Request bulk screen testing help</Link>
       <RelatedTools />
     </main>
   );

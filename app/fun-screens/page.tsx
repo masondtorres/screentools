@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { FAQBlock } from "@/components/FAQBlock";
 import { FunScreenCard } from "@/components/FunScreenCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -30,6 +31,7 @@ export default function FunScreensPage() {
       <JsonLd data={[breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Fun Screens", path: "/fun-screens" }]), faqSchema(faqs)]} />
       <h1 className="text-3xl font-bold sm:text-4xl">Fun Screens</h1>
       <p className="mt-3 max-w-3xl text-gray-700">Harmless full-screen visual effects for jokes, videos and backgrounds. Press Esc to exit fullscreen.</p>
+      <p className="mt-2 max-w-3xl text-gray-700">Want ambient browser visuals? Browse the <Link href="/web-screensavers" className="font-semibold text-blue-700 underline">web screensavers</Link> collection.</p>
       <div className="mt-5">
         <ResponsibleUseNotice />
       </div>

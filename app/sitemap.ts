@@ -5,7 +5,7 @@ import { seoLandingPages } from "@/lib/seo-pages";
 import { guides, site, toolLinks } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["/", "/guides", "/fun-screens", "/about", "/contact", "/privacy", "/terms", "/bulk-screen-testing"];
+  const staticPages = ["/", "/guides", "/fun-screens", "/web-screensavers", "/about", "/contact", "/privacy", "/terms", "/bulk-screen-testing"];
   const toolPages = toolLinks.map((tool) => tool.href);
   const clusters = clusterPages.map((page) => `/${page.slug}`);
   const guidePages = guides.map((guide) => guide.href);

@@ -19,7 +19,7 @@ export default function TermsPage() {
       <p>The tools are visual tools. They can help with visual checks, but they do not replace professional hardware testing, repair or calibration.</p>
       <p>Screen tests can help identify possible issues. They do not repair devices, confirm warranty coverage or replace professional diagnostics.</p>
       <p>Fun screens are visual effects only. Nothing is actually broken, crashing or updating. Use them responsibly and do not use them to mislead people about security, payments, accounts or device damage.</p>
-      <p>Contact is by email only. ScreenTools does not use a public contact form in this version.</p>
+      <p>The contact form is for inquiries only. No response time is guaranteed, and ScreenTools does not provide emergency, legal or professional repair support through the form.</p>
       <p>Do not stare directly at a bright screen for long periods. Take care when using bright fullscreen modes in dark rooms.</p>
     </main>
   );

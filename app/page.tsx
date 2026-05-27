@@ -60,7 +60,8 @@ export default function HomePage() {
             { title: "Color Screens", href: "/color-screens", description: "White, black, custom and preset full-screen colors." },
             { title: "Screen Tests", href: "/screen-tests", description: "Dead pixel, monitor, backlight and uniformity checks." },
             { title: "Screen Lighting", href: "/screen-lighting", description: "Use your screen as a simple light source." },
-            { title: "Focus Screens", href: "/focus-screens", description: "Blank screens and timers for low-distraction work." }
+            { title: "Focus Screens", href: "/focus-screens", description: "Blank screens and timers for low-distraction work." },
+            { title: "Web Screensavers", href: "/web-screensavers", description: "Fullscreen visual effects with no download required." }
           ].map((item) => (
             <Link key={item.href} href={item.href} className="group overflow-hidden rounded-2xl border border-white/70 bg-white/90 shadow-sm hover:border-blue-200 hover:shadow-soft">
               <div className="h-20 bg-[linear-gradient(135deg,#0f172a,#1d4ed8_45%,#f8fafc_46%,#e0f2fe)]" />

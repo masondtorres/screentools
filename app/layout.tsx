@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     template: "%s"
   },
   description: site.description,
+  manifest: "/manifest.webmanifest",
   openGraph: {
     siteName: site.name,
     type: "website"

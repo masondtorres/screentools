@@ -28,11 +28,14 @@ Use these settings:
 - Install command: `npm install`
 - Build command: `npm run build`
 - Output directory: leave blank/default
-- Environment variables: none required for the MVP
+- Environment variables for basic tools: none required
+- Environment variables for the contact form:
+  - `RESEND_API_KEY=your_resend_api_key_here`
+  - `CONTACT_EMAIL=masondtorres@duck.com`
 
 The app uses the Next.js App Router. `app/sitemap.ts` generates `/sitemap.xml`, and `app/robots.ts` generates `/robots.txt`.
 
-No Google Analytics key, AdSense code, payment provider or database is required for launch.
+No Google Analytics key, AdSense code, payment provider or database is required for launch. The contact form uses Resend only when `RESEND_API_KEY` is configured in the deployment environment.
 
 ## Add Google Analytics later
 
@@ -48,7 +51,9 @@ Replace the placeholder links in `components/RecommendedGear.tsx` with real affi
 
 ## Configure contact email
 
-The public contact email is set in `lib/config.ts` as `contactEmail`. Current value: `masondtorres@duck.com`. Contact CTAs use `mailto:` links only. Do not add a static contact form unless it sends through a real backend or form service.
+The public contact email is set with `CONTACT_EMAIL` and defaults to `masondtorres@duck.com`. Contact CTAs use that value. The `/contact` form posts to a server API route and sends through Resend when `RESEND_API_KEY` is configured.
+
+Use the Resend free tier only unless the project owner chooses otherwise later. The Resend API key must be set only in Vercel environment variables or a local `.env.local` file. Do not commit API keys. The sender/domain should be verified in Resend before production email sending is expected to work reliably.
 
 ## Add new tool pages
 

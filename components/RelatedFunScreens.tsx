@@ -14,6 +14,10 @@ export function RelatedFunScreens({ current, related }: { current: string; relat
           <span className="font-semibold">All Fun Screens</span>
           <span className="mt-1 block text-sm text-gray-600">Browse harmless full-screen visual effects.</span>
         </Link>
+        <Link href="/web-screensavers" className="rounded border border-line bg-white p-4 hover:border-gray-500">
+          <span className="font-semibold">Web Screensavers</span>
+          <span className="mt-1 block text-sm text-gray-600">Use fullscreen visual effects with no download required.</span>
+        </Link>
         {screens.filter((screen) => screen.slug !== current).slice(0, 3).map((screen) => (
           <Link key={screen.slug} href={`/${screen.slug}`} className="rounded border border-line bg-white p-4 hover:border-gray-500">
             <span className="font-semibold">{screen.cardTitle}</span>

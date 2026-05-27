@@ -18,7 +18,8 @@ export default function PrivacyPage() {
       <p>ScreenTools does not require an account, login or download to use the tools.</p>
       <p>Basic analytics may be added later to understand page visits and tool use. Display ads and affiliate links may also be added later. They are optional future monetization features and should not be treated as active unless real providers are added and this policy is updated.</p>
       <p>Current tool controls, such as color fields and timer settings, run in the browser. Some settings may be saved locally in your browser when you choose to save a preset.</p>
-      <p>Contact links use email. Do not send sensitive information unless you are comfortable sending it by email.</p>
+      <p>The contact form collects the name, email, reason and message you submit only so ScreenTools can respond. Messages are sent by email. ScreenTools does not claim database storage for contact messages in this version.</p>
+      <p>Contact links also use email. Do not send sensitive information unless you are comfortable sending it by email.</p>
     </main>
   );
 }

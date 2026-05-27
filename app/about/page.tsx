@@ -18,6 +18,8 @@ export default function AboutPage() {
       <p>ScreenTools is a free collection of browser-based screen tools for screen colors, display testing, lighting, focus and harmless visual effects.</p>
       <p>The site is built for people who need a quick white screen, black screen, custom color screen, dead pixel test, monitor test, screen flashlight or video call light.</p>
       <p>The tools do not require accounts, payments, downloads or browser extensions. Fun screens are clearly labeled as visual effects only.</p>
+      <h2>Install as app</h2>
+      <p>You can install ScreenTools as a browser app on supported browsers for faster access to fullscreen tools and web screensavers. Use your browser menu and look for Install, Add to Home Screen or Add app.</p>
     </main>
   );
 }

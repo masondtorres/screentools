@@ -72,7 +72,7 @@ export const funScreens: FunScreenPage[] = [
     effect: "blue-crash",
     related: ["fake-error-screen", "fake-windows-update", "glitch-screen"],
     sections: [
-      { title: "What is a fake blue screen?", body: ["This page shows a generic blue crash-style screen. It does not use Microsoft branding, real QR codes or exact operating system text. Nothing is actually wrong with your computer."] },
+      { title: "What is a fake blue screen?", body: ["This page shows a generic blue crash-style screen. It does not use real operating system branding, real QR codes or exact system text. Nothing is actually wrong with your computer."] },
       { title: "How to use it", body: ["Customize the headline if you want, start fullscreen, and press Esc to exit. Keep the text clearly fake and do not ask for passwords, payments or security actions."] },
       { title: "Safe use note", body: ["Use this as a visual effect only. Do not use it to make someone think their device, files or account are at risk."] }
     ],

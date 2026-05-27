@@ -15,6 +15,7 @@ export function FunScreenLayout({ page }: { page: FunScreenPage }) {
         <p className="text-sm font-bold uppercase tracking-wide text-gray-600">Fake visual effect</p>
         <h1 className="mt-2 text-3xl font-bold sm:text-4xl">{page.h1}</h1>
         <p className="mt-3 max-w-3xl text-gray-700">{page.description}</p>
+        <p className="mt-2 max-w-3xl text-gray-700">Use it as a fullscreen web screensaver, video background, harmless joke or display ambience screen. No download required.</p>
       </section>
       <ResponsibleUseNotice motion={page.motionWarning} />
       <div className="mt-5">
