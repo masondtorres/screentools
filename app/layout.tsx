@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -12,10 +13,27 @@ export const metadata: Metadata = {
   },
   description: site.description,
   manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "ScreenTools",
+    statusBarStyle: "black-translucent"
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
+  },
   openGraph: {
     siteName: site.name,
     type: "website"
   }
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0f172a"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -26,6 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         {children}
         <Footer />
+        <ServiceWorkerRegister />
       </body>
     </html>
   );
